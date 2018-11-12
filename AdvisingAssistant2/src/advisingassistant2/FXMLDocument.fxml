@@ -7,8 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="advisingassistant2.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="advisingassistant2.FXMLDocumentController">
    <children>
       <Button fx:id="openLogin" layoutX="438.0" layoutY="583.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="133.0" text="Login">
          <font>
@@ -20,5 +19,22 @@
             <Font size="22.0" />
          </font>
       </Button>
+      <Text layoutX="324.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Advising Assistant" textAlignment="CENTER" wrappingWidth="361.13671875">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Text>
+      <Label layoutX="225.0" layoutY="271.0" text="Username">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="229.0" layoutY="363.0" text="Password">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <TextField layoutX="379.0" layoutY="279.0" prefHeight="27.0" prefWidth="286.0" />
+      <PasswordField layoutX="379.0" layoutY="371.0" prefHeight="27.0" prefWidth="286.0" />
    </children>
 </AnchorPane>
