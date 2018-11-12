@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="499.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="advisingassistant2.LoginPageController">
+   <children>
+      <Text fx:id="LoginLabel" layoutX="259.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="login">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
