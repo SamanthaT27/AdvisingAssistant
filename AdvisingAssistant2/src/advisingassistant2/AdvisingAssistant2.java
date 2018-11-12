@@ -34,7 +34,7 @@ public class AdvisingAssistant2 extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    public void Registration(Stage stage) throws Exception
+    public void register(Stage stage) throws Exception
     {
         Parent root2 = FXMLLoader.load(getClass().getResource("registerPage.fxml"));
         

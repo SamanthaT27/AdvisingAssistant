@@ -5,6 +5,7 @@
  */
 package advisingassistant2;
 
+import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -65,15 +66,15 @@ public class FXMLDocumentController implements Initializable {
      @FXML
     void openRegistration(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("registerPage.fxml"));
-            Parent root2 = (Parent) fxmlLoader.load();
+            FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("registerPage.fxml"));
+            Parent root2 = (Parent) fxmlLoader1.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setOpacity(1);
             stage.setTitle("Registration Page");
             stage.setScene(new Scene(root2,450,450));
             stage.show();
-        } catch (Exception e) {
+        } catch (Exception ex) {
             System.out.println("Can't load Register Window");
         }
     }
