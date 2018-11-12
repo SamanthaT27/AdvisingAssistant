@@ -86,6 +86,7 @@ public class FXMLDocumentController implements Initializable {
         ((Node)event.getSource()).getScene().getWindow().hide();//this is to be able to load to the new page and hide the previous page
             loadWindow("/Register/RegisterPage.fxml","Register");
             
+            //open register
             
 
     }
