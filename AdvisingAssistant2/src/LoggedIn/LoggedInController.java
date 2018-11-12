@@ -3,33 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package advisingassistant2;
+package LoggedIn;
 
+import advisingassistant2.FXMLDocumentController;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 
 /**
  * FXML Controller class
  *
  * @author Sammy
  */
+public class LoggedInController implements Initializable {
 
-   
-public class LoginPageController implements Initializable {
+    @FXML
+    private Text names;
 
     /**
      * Initializes the controller class.
      */
-    @FXML
-    private Text LoginLabel;
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        String user = FXMLDocumentController.getVariable();
+        names.setText("Welcome, "+user);
     }    
     
 }

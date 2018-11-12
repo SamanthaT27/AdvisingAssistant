@@ -26,23 +26,6 @@ public class AdvisingAssistant2 extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    public void login(Stage stage) throws Exception
-    {
-        Parent root1 = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
-        
-        Scene scene = new Scene(root1);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void register(Stage stage) throws Exception
-    {
-        Parent root2 = FXMLLoader.load(getClass().getResource("registerPage.fxml"));
-        
-        Scene scene = new Scene(root2);
-        stage.setScene(scene);
-        stage.show();
-    }
-
     /**
      * @param args the command line arguments
      */

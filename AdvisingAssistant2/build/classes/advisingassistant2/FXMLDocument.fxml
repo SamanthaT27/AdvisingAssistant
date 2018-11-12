@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,18 +8,35 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="advisingassistant2.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="advisingassistant2.FXMLDocumentController">
    <children>
-      <Button fx:id="openLogin" layoutX="438.0" layoutY="583.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="133.0" text="Login">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Button>
-      <Button fx:id="resgisterButton" layoutX="438.0" layoutY="652.0" mnemonicParsing="false" onAction="#openRegistration" prefHeight="49.0" prefWidth="133.0" text="Register">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Button>
+      <VBox alignment="CENTER" layoutX="14.0" layoutY="7.0" prefHeight="768.0" prefWidth="1024.0" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="7.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Advising Assistant" textAlignment="CENTER" wrappingWidth="361.13671875">
+               <font>
+                  <Font size="43.0" />
+               </font>
+            </Text>
+            <TextField fx:id="user" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0" promptText="Enter Username">
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </TextField>
+            <PasswordField fx:id="pass" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0" promptText="Enter Password">
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </PasswordField>
+            <Button fx:id="loginUser" mnemonicParsing="false" onAction="#loginUser" prefHeight="49.0" prefWidth="133.0" text="Login">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
