@@ -28,8 +28,8 @@ public class LoggedInController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        String user = FXMLDocumentController.getVariable();
-        names.setText("Welcome, "+user);
+        String user = FXMLDocumentController.getVariable();//Calls method from FXMLDocumentController getVariable
+        names.setText("Welcome, "+user);//outputs the message welcome,user; user being the values that are given in the text field 
     }    
     
 }

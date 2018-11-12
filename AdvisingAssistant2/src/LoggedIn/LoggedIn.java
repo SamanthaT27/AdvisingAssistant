@@ -20,7 +20,7 @@ public class LoggedIn extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("loggedIn.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("loggedIn.fxml"));//must be the fxml file you are currently working on 
         
         Scene scene = new Scene(root);
         
