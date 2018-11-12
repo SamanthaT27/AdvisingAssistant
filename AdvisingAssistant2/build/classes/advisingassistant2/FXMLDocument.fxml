@@ -35,6 +35,14 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="RegisterButton" mnemonicParsing="false" onAction="#OpenRegister" prefHeight="49.0" prefWidth="133.0" text="Register">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
 
          </children>
       </VBox>

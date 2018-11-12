@@ -45,6 +45,8 @@ public class FXMLDocumentController implements Initializable {
     private PasswordField pass;
     @FXML
     private Button loginUser;
+    @FXML
+    private Button RegisterButton;
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -78,6 +80,16 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     }
+    
+    @FXML
+    void OpenRegister(ActionEvent event) throws IOException {
+        ((Node)event.getSource()).getScene().getWindow().hide();//this is to be able to load to the new page and hide the previous page
+            loadWindow("/Register/RegisterPage.fxml","Register");
+            
+            
+
+    }
+    
     private void loadWindow(String location,String title) throws IOException{//method to be able to open a new window, can be used multiple times 
         Parent root=FXMLLoader.load(getClass().getResource(location));
         Scene scene = new Scene(root);
