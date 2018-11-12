@@ -1,45 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="advisingassistant2.FXMLDocumentController">
-   <children>
-      <Text fx:id="WelcomeLabel" layoutX="73.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Advising Assistant" textAlignment="CENTER">
-         <font>
-            <Font name="Times New Roman" size="72.0" />
-         </font>
-      </Text>
- Login-and-register
-      <Text fx:id="UsernameLabel" layoutX="180.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username"
-         <font>
-            <Font name="Times New Roman" size="36.0" />
-         </font>
-      </Text>
-
-      <Text fx:id="PasswordLabel" layoutX="183.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
-
-         <font>
-            <Font name="Times New Roman" size="36.0" />
-         </font>
-      </Text>
-
-      <PasswordField fx:id="PasswordBox" layoutX="370.0" layoutY="289.0" prefHeight="28.0" prefWidth="367.0" />
-      <TextField fx:id="UsernameBox" layoutX="370.0" layoutY="221.0" prefHeight="28.0" prefWidth="367.0" />
-      <Button fx:id="openLogin" layoutX="453.0" layoutY="598.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="56.0" prefWidth="171.0" text="Login">
-      <Button layoutX="453.0" layoutY="679.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="171.0" text="Register">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
-      <Button fx:id="resgisterButton" layoutX="453.0" layoutY="676.0" mnemonicParsing="false" onMouseClicked="#openRegistration" prefHeight="56.0" prefWidth="171.0" text="Register">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
-   </children>
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
+    
 </AnchorPane>
