@@ -50,6 +50,9 @@ public class RegisterPageController implements Initializable {
     @FXML
     private PasswordField Password_Txtbx;
     
+
+    
+    
    
     
     /**
@@ -62,11 +65,28 @@ public class RegisterPageController implements Initializable {
 
     @FXML
     private void StudentRadioAction(ActionEvent event) {
-        
+       if(StudentRadioButton.isArmed())
+       {
+           StaffRadioButton.setSelected(false);
+           Fid_Txtbx.setDisable(true);
+           Dep_MenuButton.setDisable(true);
+           ID_TxtBx.setDisable(false);
+           M_MenuButton.setDisable(false);
+       }
+       
     }
 
     @FXML
     private void StaffRadioAction(ActionEvent event) {
+        if(StaffRadioButton.isArmed())
+        {
+            StudentRadioButton.setSelected(false);
+            ID_TxtBx.setDisable(true);
+            M_MenuButton.setDisable(true);
+            Fid_Txtbx.setDisable(false);
+            Dep_MenuButton.setDisable(false);
+        }
+        
     }
     
 }
