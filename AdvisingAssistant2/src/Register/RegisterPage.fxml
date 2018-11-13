@@ -27,22 +27,22 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </TextField>
-            <TextField maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
+            <TextField fx:id="Fid_Txtbx" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
             </TextField>
-            <ChoiceBox prefHeight="35.0" prefWidth="300.0">
+            <ChoiceBox fx:id="M_MenuButton" prefHeight="35.0" prefWidth="300.0">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
             </ChoiceBox>
-            <ChoiceBox maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
+            <ChoiceBox fx:id="Dep_MenuButton" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
             </ChoiceBox>
-            <PasswordField maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
+            <PasswordField fx:id="Password_Txtbx" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
