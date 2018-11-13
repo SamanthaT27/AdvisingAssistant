@@ -11,7 +11,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -39,6 +41,14 @@ public class RegisterPageController implements Initializable {
     private Button Submit_button;
     @FXML
     private Text First_Name_Label;
+    @FXML
+    private TextField Fid_Txtbx;
+    @FXML
+    private ChoiceBox<?> M_MenuButton;
+    @FXML
+    private ChoiceBox<?> Dep_MenuButton;
+    @FXML
+    private PasswordField Password_Txtbx;
     
    
     
