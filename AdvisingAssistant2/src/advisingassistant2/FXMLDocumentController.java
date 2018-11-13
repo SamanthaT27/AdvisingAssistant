@@ -22,6 +22,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -47,6 +48,7 @@ public class FXMLDocumentController implements Initializable {
     private Button loginUser;
     @FXML
     private Button RegisterButton;
+    
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -87,6 +89,7 @@ public class FXMLDocumentController implements Initializable {
             loadWindow("/Register/RegisterPage.fxml","Register");
             
             //open register
+            
             
 
     }
