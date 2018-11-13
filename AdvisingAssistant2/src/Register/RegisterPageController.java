@@ -38,10 +38,6 @@ public class RegisterPageController implements Initializable {
     @FXML
     private Button Submit_button;
     @FXML
-    private Label ID_label;
-    @FXML
-    private Label DM_label;
-    @FXML
     private Text First_Name_Label;
     
    
@@ -56,6 +52,7 @@ public class RegisterPageController implements Initializable {
 
     @FXML
     private void StudentRadioAction(ActionEvent event) {
+        
     }
 
     @FXML
