@@ -8,44 +8,81 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Register.RegisterPageController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Register.RegisterPageController">
    <children>
-      <VBox alignment="CENTER" layoutX="341.0" layoutY="263.0" prefHeight="242.0" prefWidth="343.0" AnchorPane.bottomAnchor="263.0" AnchorPane.leftAnchor="341.0" AnchorPane.rightAnchor="340.0" AnchorPane.topAnchor="263.0">
+      <VBox layoutX="487.0" layoutY="215.0" prefHeight="354.0" prefWidth="698.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Register page">
-               <font>
-                  <Font size="39.0" />
-               </font>
-            </Text>
-            <TextField maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
+            <TextField fx:id="First_Name_TxtBx" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
             </TextField>
+            <TextField fx:id="Last_name_TxtBx" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="ID_TxtBx" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </TextField>
+            <ChoiceBox prefHeight="35.0" prefWidth="300.0">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </ChoiceBox>
             <PasswordField maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
             </PasswordField>
          </children>
+         <padding>
+            <Insets top="30.0" />
+         </padding>
       </VBox>
-      <RadioButton alignment="CENTER_LEFT" layoutX="363.0" layoutY="523.0" mnemonicParsing="false" text="Student">
+      <RadioButton fx:id="StudentRadioButton" alignment="CENTER_LEFT" layoutX="382.0" layoutY="142.0" mnemonicParsing="false" onAction="#StudentRadioAction" prefHeight="52.0" prefWidth="141.0" text="Student">
          <font>
-            <Font size="15.0" />
+            <Font size="24.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="566.0" layoutY="523.0" mnemonicParsing="false" text="Staff">
+      <RadioButton fx:id="StaffRadioButton" layoutX="647.0" layoutY="142.0" mnemonicParsing="false" onAction="#StaffRadioAction" prefHeight="49.0" prefWidth="121.0" text="Staff">
          <font>
-            <Font size="15.0" />
+            <Font size="24.0" />
          </font>
       </RadioButton>
-      <Text layoutX="217.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+      <Text layoutX="435.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register page" textOrigin="CENTER">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </Text>
+      <Button fx:id="Submit_button" layoutX="487.0" layoutY="652.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="133.0" text="Submit">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Label fx:id="ID_label" layoutX="376.0" layoutY="472.0" text="Label">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="DM_label" layoutX="376.0" layoutY="413.0" text="Label">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Text fx:id="First_Name_Label" layoutX="353.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="224.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+      <Text layoutX="353.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="353.0" layoutY="562.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
             <Font size="24.0" />
          </font>

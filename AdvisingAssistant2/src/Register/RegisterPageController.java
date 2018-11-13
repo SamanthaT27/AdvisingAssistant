@@ -7,15 +7,24 @@ package Register;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.RadioButton;
 
 /**
  * FXML Controller class
  *
  * @author Leo
  */
-public class RegisterPageController implements Initializable {
 
+ 
+public class RegisterPageController implements Initializable {
+    
+   @FXML
+    private RadioButton StudentRadioButton;
+    @FXML
+    private RadioButton StaffRadioButton;
+    
     /**
      * Initializes the controller class.
      */
