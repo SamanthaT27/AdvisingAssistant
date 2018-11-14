@@ -5,7 +5,11 @@
  */
 package Register;
 
+import connectivity.ConnectionClass;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +21,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-
+import java.sql.*;
+import javafx.scene.control.Alert;
+import javax.xml.bind.DatatypeConverter;
 /**
  * FXML Controller class
  *
@@ -70,7 +76,7 @@ public class RegisterPageController implements Initializable {
            StaffRadioButton.setSelected(false);
            Fid_Txtbx.setDisable(true);
            Dep_MenuButton.setDisable(true);
-           ID_TxtBx.setDisable(false);
+          ID_TxtBx.setDisable(false);
            M_MenuButton.setDisable(false);
        }
        
@@ -89,4 +95,101 @@ public class RegisterPageController implements Initializable {
         
     }
     
+    @FXML
+    private void SubmitAction(ActionEvent event) throws NoSuchAlgorithmException, SQLException
+    {
+        ConnectionClass connectionClass=new ConnectionClass();
+        Connection connection = connectionClass.getConnection();
+        Statement statement = connection.createStatement();
+        
+         String fname=First_Name_TxtBx.getText();
+         String lname=Last_name_TxtBx.getText();
+         String pass = hashPass(Password_Txtbx.getText());
+        
+        if (StaffRadioButton.isSelected())
+        {
+           try{
+            String Ffid=Fid_Txtbx.getText();
+            int fid = Integer.parseInt(Fid_Txtbx.getText());
+            String dept = "Criminal Justice"; //Dep_MenuButton.getSelectionModel().getSelectedItem().toString();
+            String fn = fname.substring(0, 1);
+            String ln = lname.substring(0,1);
+            String fuser = fn+ln+Ffid;
+            
+            String sqlSelect="Select fid FROM FacultyList Where fname = '"+fname+"' AND lname='"+lname+"';";
+            ResultSet FID=statement.executeQuery(sqlSelect);
+            String DBfid;
+            if (FID.next())
+           {
+               DBfid = FID.getString(1);
+                int dfid=Integer.parseInt(DBfid);
+
+                if (dfid==fid)
+               {
+                    try{
+                    String fsql = "Insert into Faculty Values ('"+fuser+"','"+pass+"','"+fname+"','"+lname+"','"+fid+"','"+dept+"');";
+                    statement.executeUpdate(fsql);
+                    }
+                    catch(Exception e)
+                    {
+                        Alert alert=new Alert(Alert.AlertType.ERROR);//If the username and password are incorrect then an error appears
+                        alert.setHeaderText(null);
+                        alert.setContentText("Faculty user exists!");
+                        alert.showAndWait();
+                    }
+                }
+                else
+                {
+                    Alert alert=new Alert(Alert.AlertType.ERROR);//If the username and password are incorrect then an error appears
+                    alert.setHeaderText(null);
+                    alert.setContentText("Faculty IDs do not match!");
+                    alert.showAndWait();
+                }
+           }
+            else
+            {
+                Alert alert=new Alert(Alert.AlertType.ERROR);//If the username and password are incorrect then an error appears
+                alert.setHeaderText(null);
+                alert.setContentText("Not a registered Faculty Member!");
+                alert.showAndWait();
+            }
+           }
+           catch (Exception e)
+           {
+                Alert alert=new Alert(Alert.AlertType.ERROR);//If the username and password are incorrect then an error appears
+                alert.setHeaderText(null);
+                alert.setContentText("Fill in empty spaces!");
+                alert.showAndWait();
+           }
+            
+        }
+        else
+        {
+           try{
+               String major = "Computer Science";//M_MenuButton.getSelectionModel().getSelectedItem().toString();
+           String Ssid = ID_TxtBx.getText();
+           int sid = Integer.parseInt(ID_TxtBx.getText());
+            String f = fname.substring(0, 1);
+            String l = lname.substring(0, 1);
+           String suser = f+l+Ssid;
+           
+           String Ssql = "Insert into Student Values ('"+suser+"','"+pass+"','"+fname+"','"+lname+"','"+major+"',"+sid+")";
+           statement.executeUpdate(Ssql);
+        }
+           catch(Exception e)
+           {
+               Alert alert=new Alert(Alert.AlertType.ERROR);//If the username and password are incorrect then an error appears
+                alert.setHeaderText(null);
+                alert.setContentText("Fill in empty spaces!");
+                alert.showAndWait();
+           }
+    }
+    }
+    private String hashPass(String p) throws NoSuchAlgorithmException
+    {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        byte[] digest=md.digest(p.getBytes(StandardCharsets.UTF_8));
+        String pass = DatatypeConverter.printHexBinary(digest).toLowerCase();
+        return pass;
+    }
 }
