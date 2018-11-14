@@ -119,7 +119,7 @@ public class RegisterPageController implements Initializable {
             String sqlSelect="Select fid FROM FacultyList Where fname = '"+fname+"' AND lname='"+lname+"';";
             ResultSet FID=statement.executeQuery(sqlSelect);
             String DBfid;
-            if (FID.next())
+            if (FID.next())//Checks to make sure there is a matching fid
            {
                DBfid = FID.getString(1);
                 int dfid=Integer.parseInt(DBfid);
@@ -165,7 +165,7 @@ public class RegisterPageController implements Initializable {
         }
         else
         {
-           try{
+           try{//makes sure there isn't a null value
                String major = "Computer Science";//M_MenuButton.getSelectionModel().getSelectedItem().toString();
            String Ssid = ID_TxtBx.getText();
            int sid = Integer.parseInt(ID_TxtBx.getText());
