@@ -74,7 +74,9 @@ public class RegisterPageController implements Initializable {
         // TODO
         M_MenuButton.setItems(Major_list);
         Dep_MenuButton.setItems(Department_list);
-        
+        StudentRadioButton.setSelected(true);
+        Fid_Txtbx.setDisable(true);
+        Dep_MenuButton.setDisable(true);        
     }    
 
     @FXML
