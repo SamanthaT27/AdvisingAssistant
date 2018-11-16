@@ -168,14 +168,36 @@ public class RegisterPageController implements Initializable {
            try{//makes sure there isn't a null value
                String major = "Computer Science";//M_MenuButton.getSelectionModel().getSelectedItem().toString();
            String Ssid = ID_TxtBx.getText();
-           int sid = Integer.parseInt(ID_TxtBx.getText());
-            String f = fname.substring(0, 1);
+          int sid;
+           try{
+           sid = Integer.parseInt(ID_TxtBx.getText());
+           String f = fname.substring(0, 1);
             String l = lname.substring(0, 1);
            String suser = f+l+Ssid;
-           
+           try{
            String Ssql = "Insert into Student Values ('"+suser+"','"+pass+"','"+fname+"','"+lname+"','"+major+"',"+sid+")";
            statement.executeUpdate(Ssql);
-        }
+           
+           String newTable="Create Table "+suser+"(course Varchar(4), courseNum Varchar(4), courseName Varchar(30), credit int);";
+           statement.executeUpdate(newTable);
+           }
+           catch(Exception e)
+           {
+               Alert alert=new Alert(Alert.AlertType.ERROR);//If the username and password are incorrect then an error appears
+                alert.setHeaderText(null);
+                alert.setContentText("User exists!");
+                alert.showAndWait();
+           }
+           }
+           catch(Exception e)
+           {
+               Alert alert=new Alert(Alert.AlertType.ERROR);//If the username and password are incorrect then an error appears
+                alert.setHeaderText(null);
+                alert.setContentText("Enter a number as the ID!");
+                alert.showAndWait();
+           }
+           
+           }
            catch(Exception e)
            {
                Alert alert=new Alert(Alert.AlertType.ERROR);//If the username and password are incorrect then an error appears
