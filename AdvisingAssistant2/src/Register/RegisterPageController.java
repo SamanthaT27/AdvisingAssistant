@@ -22,6 +22,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import java.sql.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javax.xml.bind.DatatypeConverter;
 /**
@@ -32,7 +34,10 @@ import javax.xml.bind.DatatypeConverter;
 
  
 public class RegisterPageController implements Initializable {
-
+    ObservableList<String> Major_list = FXCollections.observableArrayList("Computer Science", "Criminal Justice");
+    ObservableList<String> Department_list = FXCollections.observableArrayList("Computer Science", "Criminal Justice");
+    
+    
     @FXML
     private TextField First_Name_TxtBx;
     @FXML
@@ -50,9 +55,9 @@ public class RegisterPageController implements Initializable {
     @FXML
     private TextField Fid_Txtbx;
     @FXML
-    private ChoiceBox<?> M_MenuButton;
+    private ChoiceBox<String> M_MenuButton;
     @FXML
-    private ChoiceBox<?> Dep_MenuButton;
+    private ChoiceBox<String> Dep_MenuButton;
     @FXML
     private PasswordField Password_Txtbx;
     
@@ -67,6 +72,9 @@ public class RegisterPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        M_MenuButton.setItems(Major_list);
+        Dep_MenuButton.setItems(Department_list);
+        
     }    
 
     @FXML

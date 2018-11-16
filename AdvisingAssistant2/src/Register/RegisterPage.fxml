@@ -27,16 +27,16 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="Fid_Txtbx" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
-               <VBox.margin>
-                  <Insets top="30.0" />
-               </VBox.margin>
-            </TextField>
             <ChoiceBox fx:id="M_MenuButton" prefHeight="35.0" prefWidth="300.0">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
             </ChoiceBox>
+            <TextField fx:id="Fid_Txtbx" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </TextField>
             <ChoiceBox fx:id="Dep_MenuButton" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
                <VBox.margin>
                   <Insets top="30.0" />
@@ -92,12 +92,12 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="382.0" layoutY="501.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Major">
+      <Text layoutX="376.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Major">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="361.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faculty ID">
+      <Text layoutX="361.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faculty ID">
          <font>
             <Font size="24.0" />
          </font>

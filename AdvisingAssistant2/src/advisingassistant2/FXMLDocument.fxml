@@ -27,6 +27,16 @@
                   <Insets top="40.0" />
                </VBox.margin>
             </PasswordField>
+            <RadioButton fx:id="Faculty_RadioButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#Faculty_Login" prefHeight="49.0" prefWidth="133.0" text="Faculty ">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="Student_RadioButton" layoutX="100.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#Student_Login" prefHeight="49.0" prefWidth="133.0" text="Student">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </RadioButton>
             <Button fx:id="loginUser" mnemonicParsing="false" onAction="#loginUser" prefHeight="49.0" prefWidth="133.0" text="Login">
                <font>
                   <Font size="22.0" />
