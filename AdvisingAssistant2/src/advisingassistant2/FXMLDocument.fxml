@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -10,6 +11,11 @@
 
 <AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="advisingassistant2.FXMLDocumentController">
    <children>
+      <ImageView fitHeight="768.0" fitWidth="1024.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Image/Login%20and%20Register.png" />
+         </image>
+      </ImageView>
       <VBox alignment="CENTER" layoutX="14.0" layoutY="7.0" prefHeight="768.0" prefWidth="1024.0" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="7.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Advising Assistant" textAlignment="CENTER" wrappingWidth="361.13671875">

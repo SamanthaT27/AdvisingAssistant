@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -8,9 +9,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Register.RegisterPageController">
+<AnchorPane id="AnchorPane" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Register.RegisterPageController">
    <children>
-      <VBox layoutX="487.0" layoutY="191.0" prefHeight="354.0" prefWidth="698.0">
+      <ImageView fitHeight="842.0" fitWidth="1180.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Image/Login%20and%20Register.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="476.0" layoutY="194.0" prefHeight="354.0" prefWidth="698.0">
          <children>
             <TextField fx:id="First_Name_TxtBx" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
                <VBox.margin>

@@ -9,6 +9,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -25,7 +28,19 @@ public class AdvisingAssistant2 extends Application {
         
         stage.setScene(scene);
         stage.show();
+        
+        ImageView iv = new ImageView();
+        iv.setImage(image);
+        
+        pane.getChildren().add(iv);
     }
+    
+    Image image = new Image("file:login and register page.png");
+    StackPane pane = new StackPane();
+    Scene scene = new Scene(pane,500,500);
+    
+    
+    
     /**
      * @param args the command line arguments
      */
