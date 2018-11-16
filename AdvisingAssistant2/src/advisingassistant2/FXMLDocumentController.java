@@ -57,6 +57,10 @@ public class FXMLDocumentController implements Initializable {
     private Button loginUser;
     @FXML
     private Button RegisterButton;
+    @FXML
+    private RadioButton Student_RadioButton;
+    @FXML
+    private RadioButton Faculty_RadioButton;
     
  
     @Override
@@ -120,6 +124,24 @@ public class FXMLDocumentController implements Initializable {
         alert.showAndWait();}
         
     }
+    }
+    
+     @FXML
+    void Faculty_Login(ActionEvent event) {
+        if(Faculty_RadioButton.isArmed())
+        {
+            Student_RadioButton.setSelected(false);
+        }
+
+    }
+
+    @FXML
+    void Student_Login(ActionEvent event) {
+        if(Student_RadioButton.isArmed())
+        {
+            Faculty_RadioButton.setSelected(false);
+        }
+
     }
     
     @FXML
