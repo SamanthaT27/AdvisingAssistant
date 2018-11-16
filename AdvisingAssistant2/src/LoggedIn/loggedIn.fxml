@@ -9,15 +9,51 @@
 
 <AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoggedIn.LoggedInController">
    <children>
-      <Text fx:id="Date_txt" layoutX="64.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="253.0">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <Text fx:id="names" layoutX="43.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome">
-         <font>
-            <Font size="54.0" />
-         </font>
-      </Text>
+      <TabPane prefHeight="768.0" prefWidth="1024.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Home">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text fx:id="Date_txt" layoutX="103.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="253.0">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="names" layoutX="29.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome">
+                           <font>
+                              <Font size="54.0" />
+                           </font>
+                        </Text>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Schedule">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+          <Tab text="Recommendation">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="50.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+          <Tab text="Trancript">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+          <Tab text="Help">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+          <Tab text="Resources">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>
