@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  *
@@ -28,16 +27,17 @@ public class AdvisingAssistant2 extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
-        stage.setMaxWidth(1024);
-        stage.setMaxHeight(768);
-        stage.setResizable(false);
-        stage.sizeToScene();
         stage.show();
         
-       
+        ImageView iv = new ImageView();
+        iv.setImage(image);
+        
+        pane.getChildren().add(iv);
     }
-     
-  
+    
+    Image image = new Image("file:login and register page.png");
+    StackPane pane = new StackPane();
+    Scene scene = new Scene(pane,500,500);
     
     
     
@@ -46,7 +46,6 @@ public class AdvisingAssistant2 extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        
     }
     
 }
