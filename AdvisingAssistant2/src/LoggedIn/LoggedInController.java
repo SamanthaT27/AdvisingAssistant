@@ -209,7 +209,7 @@ public class LoggedInController implements Initializable {
         @FXML
     void SaveButton(ActionEvent event) throws IOException {
       //needs to be able to save the NotesArea TextArea 
-    //String userHomeFolder = System.getProperty("user.home");
+    String userHomeFolder = System.getProperty("user.home");
     File textFile = new File(userHomeFolder, "Notes.txt");
     BufferedWriter out = new BufferedWriter(new FileWriter(textFile));
     out.write(NotesArea.getText());
