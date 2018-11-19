@@ -188,7 +188,7 @@ public class RegisterPageController implements Initializable {
            String Ssql = "Insert into Student Values ('"+suser+"','"+pass+"','"+fname+"','"+lname+"','"+major+"',"+sid+")";
            statement.executeUpdate(Ssql);
            
-           String newTable="Create Table "+suser+"(course Varchar(4), courseNum Varchar(4), courseName Varchar(30), credit int);";
+           String newTable="Create Table "+suser+"(course Varchar(4), courseNum Varchar(4), courseName Varchar(30), credit int, grade CHAR(1), stat VARCHAR(12));";
            statement.executeUpdate(newTable);
            }
            catch(Exception e)
