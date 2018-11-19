@@ -83,6 +83,7 @@ public class RegisterPageController implements Initializable {
     private void StudentRadioAction(ActionEvent event) {
        if(StudentRadioButton.isArmed())
        {
+           //if StudentRadioButton is selected staff buttons are disabled
            StaffRadioButton.setSelected(false);
            Fid_Txtbx.setDisable(true);
            Dep_MenuButton.setDisable(true);
@@ -96,6 +97,7 @@ public class RegisterPageController implements Initializable {
     private void StaffRadioAction(ActionEvent event) {
         if(StaffRadioButton.isArmed())
         {
+            //if StaffRadioButton is selected student buttons are disabled
             StudentRadioButton.setSelected(false);
             ID_TxtBx.setDisable(true);
             M_MenuButton.setDisable(true);
@@ -108,41 +110,44 @@ public class RegisterPageController implements Initializable {
     @FXML
     private void SubmitAction(ActionEvent event) throws NoSuchAlgorithmException, SQLException
     {
-        ConnectionClass connectionClass=new ConnectionClass();
+        //Action on click connects to database and adds user; Faculty are added if they are on the Faculty list
+        ConnectionClass connectionClass=new ConnectionClass();//used to connect to the database
         Connection connection = connectionClass.getConnection();
-        Statement statement = connection.createStatement();
+        Statement statement = connection.createStatement();//statement is used to send sql statements to the database
         
-         String fname=First_Name_TxtBx.getText();
-         String lname=Last_name_TxtBx.getText();
-         String pass = hashPass(Password_Txtbx.getText());
+         String fname=First_Name_TxtBx.getText();//gets first name
+         String lname=Last_name_TxtBx.getText();//gets last name
+         String pass = hashPass(Password_Txtbx.getText());//gets hashed version of the password
         
-        if (StaffRadioButton.isSelected())
+        if (StaffRadioButton.isSelected())//if Staff is selected
         {
            try{
             String Ffid=Fid_Txtbx.getText();
             int fid = Integer.parseInt(Fid_Txtbx.getText());
-            String dept = "Criminal Justice"; //Dep_MenuButton.getSelectionModel().getSelectedItem().toString();
-            String fn = fname.substring(0, 1);
-            String ln = lname.substring(0,1);
-            String fuser = fn+ln+Ffid;
+            String dept = Dep_MenuButton.getSelectionModel().getSelectedItem();//gets department
+            String fn = fname.substring(0, 1);//grabs first intial from first name
+            String ln = lname.substring(0,1);//grabs first initial from last name
+            String fuser = fn+ln+Ffid;//username is created by adding first initials of both first name and last name with the id 
             
+            //sql statement executed to find the id to be compared for faculty verification
             String sqlSelect="Select fid FROM FacultyList Where fname = '"+fname+"' AND lname='"+lname+"';";
             ResultSet FID=statement.executeQuery(sqlSelect);
             String DBfid;
             if (FID.next())//Checks to make sure there is a matching fid
            {
-               DBfid = FID.getString(1);
-                int dfid=Integer.parseInt(DBfid);
+               DBfid = FID.getString(1);//gives string value of the ID to DBfid
+                int dfid=Integer.parseInt(DBfid);//converts the string to and int prior to comparison
 
-                if (dfid==fid)
+                if (dfid==fid)//compares ID found in the DB to what was entered
                {
                     try{
+                        //inserts a new row into the faculty table containing the login information
                     String fsql = "Insert into Faculty Values ('"+fuser+"','"+pass+"','"+fname+"','"+lname+"','"+fid+"','"+dept+"');";
                     statement.executeUpdate(fsql);
                     }
                     catch(Exception e)
                     {
-                        Alert alert=new Alert(Alert.AlertType.ERROR);//If the username and password are incorrect then an error appears
+                        Alert alert=new Alert(Alert.AlertType.ERROR);//If the user already exists, it appears
                         alert.setHeaderText(null);
                         alert.setContentText("Faculty user exists!");
                         alert.showAndWait();
@@ -150,7 +155,7 @@ public class RegisterPageController implements Initializable {
                 }
                 else
                 {
-                    Alert alert=new Alert(Alert.AlertType.ERROR);//If the username and password are incorrect then an error appears
+                    Alert alert=new Alert(Alert.AlertType.ERROR);//If the user id does not match faculty member, it appears
                     alert.setHeaderText(null);
                     alert.setContentText("Faculty IDs do not match!");
                     alert.showAndWait();
@@ -158,7 +163,7 @@ public class RegisterPageController implements Initializable {
            }
             else
             {
-                Alert alert=new Alert(Alert.AlertType.ERROR);//If the username and password are incorrect then an error appears
+                Alert alert=new Alert(Alert.AlertType.ERROR);//Appears of user is not found on the faculty list used to verify who are the professors
                 alert.setHeaderText(null);
                 alert.setContentText("Not a registered Faculty Member!");
                 alert.showAndWait();
@@ -166,7 +171,7 @@ public class RegisterPageController implements Initializable {
            }
            catch (Exception e)
            {
-                Alert alert=new Alert(Alert.AlertType.ERROR);//If the username and password are incorrect then an error appears
+                Alert alert=new Alert(Alert.AlertType.ERROR);//If there are empty spaces, it appears
                 alert.setHeaderText(null);
                 alert.setContentText("Fill in empty spaces!");
                 alert.showAndWait();
@@ -176,24 +181,25 @@ public class RegisterPageController implements Initializable {
         else
         {
            try{//makes sure there isn't a null value
-               String major = "Computer Science";//M_MenuButton.getSelectionModel().getSelectedItem().toString();
-           String Ssid = ID_TxtBx.getText();
-          int sid;
+                String major = M_MenuButton.getSelectionModel().getSelectedItem().toString();//grabs the major of the student
+                String Ssid = ID_TxtBx.getText();//gets ID number as a string
+                int sid;
            try{
-           sid = Integer.parseInt(ID_TxtBx.getText());
-           String f = fname.substring(0, 1);
-            String l = lname.substring(0, 1);
-           String suser = f+l+Ssid;
+           sid = Integer.parseInt(ID_TxtBx.getText());//turns text in id textfield to an int and stores it into sid
+           String f = fname.substring(0, 1);//gets first initial of lastname
+            String l = lname.substring(0, 1);//gets first initial of last name
+           String suser = f+l+Ssid;//creates username by adding first initials of the first and last names to the id number
            try{
+           //Inserts a new row into the student table
            String Ssql = "Insert into Student Values ('"+suser+"','"+pass+"','"+fname+"','"+lname+"','"+major+"',"+sid+")";
            statement.executeUpdate(Ssql);
-           
+           //a table is created for each student user to store all classes taken/registered for
            String newTable="Create Table "+suser+"(course Varchar(4), courseNum Varchar(4), courseName Varchar(30), credit int);";
            statement.executeUpdate(newTable);
            }
            catch(Exception e)
            {
-               Alert alert=new Alert(Alert.AlertType.ERROR);//If the username and password are incorrect then an error appears
+               Alert alert=new Alert(Alert.AlertType.ERROR);//If the user already exists in the database; it depends on the id number
                 alert.setHeaderText(null);
                 alert.setContentText("User exists!");
                 alert.showAndWait();
@@ -201,7 +207,7 @@ public class RegisterPageController implements Initializable {
            }
            catch(Exception e)
            {
-               Alert alert=new Alert(Alert.AlertType.ERROR);//If the username and password are incorrect then an error appears
+               Alert alert=new Alert(Alert.AlertType.ERROR);//If the ID is entered as a char or string
                 alert.setHeaderText(null);
                 alert.setContentText("Enter a number as the ID!");
                 alert.showAndWait();
@@ -210,7 +216,7 @@ public class RegisterPageController implements Initializable {
            }
            catch(Exception e)
            {
-               Alert alert=new Alert(Alert.AlertType.ERROR);//If the username and password are incorrect then an error appears
+               Alert alert=new Alert(Alert.AlertType.ERROR);//there are any empty spaces
                 alert.setHeaderText(null);
                 alert.setContentText("Fill in empty spaces!");
                 alert.showAndWait();
@@ -219,6 +225,7 @@ public class RegisterPageController implements Initializable {
     }
     private String hashPass(String p) throws NoSuchAlgorithmException
     {
+        //This hashes the password using SHA-256
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         byte[] digest=md.digest(p.getBytes(StandardCharsets.UTF_8));
         String pass = DatatypeConverter.printHexBinary(digest).toLowerCase();
