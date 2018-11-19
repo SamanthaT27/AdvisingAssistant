@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -21,16 +22,62 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Text fx:id="Date_txt" layoutX="103.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="253.0">
+                        <VBox layoutX="160.0" layoutY="154.0" prefHeight="223.0" prefWidth="460.0">
+                           <children>
+                              <TextField fx:id="FromField" promptText="From:" />
+                              <PasswordField fx:id="EmailPassword" promptText="Password for verification:" />
+                              <TextField fx:id="ToField" promptText="To: " />
+                              <TextField fx:id="EmailSubject" promptText="Subject:" />
+                              <TextArea fx:id="EmailText" prefHeight="165.0" prefWidth="464.0" promptText="Type your message here..." />
+                           </children>
+                        </VBox>
+                        <TextField fx:id="SearchStudent" alignment="CENTER_RIGHT" layoutX="751.0" layoutY="22.0" onAction="#SearchStudentInfo" prefHeight="30.0" prefWidth="221.0" promptText="Student ID" />
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="758.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/SearchIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Text fx:id="Date_txt" layoutX="712.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="253.0">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Text>
-                        <Text fx:id="names" layoutX="29.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome">
+                        <Text fx:id="names" layoutX="167.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome">
                            <font>
                               <Font size="54.0" />
                            </font>
                         </Text>
+                        <Button fx:id="SendEmail" alignment="CENTER_RIGHT" layoutX="570.0" layoutY="376.0" mnemonicParsing="false" onAction="#SendEmail" text="Send">
+                           <font>
+                              <Font name="Times New Roman" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="DiscardEmail" alignment="CENTER_RIGHT" layoutX="480.0" layoutY="376.0" mnemonicParsing="false" onAction="#DiscardEmail" text="Discard">
+                           <font>
+                              <Font name="Times New Roman" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="ExitButton" layoutX="913.0" layoutY="729.0" mnemonicParsing="false" onAction="#ExitButton" text="Exit ">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="Save" layoutX="571.0" layoutY="687.0" mnemonicParsing="false" onAction="#SaveButton" text="Save">
+                           <font>
+                              <Font name="Times New Roman" size="15.0" />
+                           </font>
+                        </Button>
+                        <Text layoutX="158.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes:">
+                           <font>
+                              <Font name="Times New Roman" size="26.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="167.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Outlook Email:">
+                           <font>
+                              <Font name="Times New Roman" size="33.0" />
+                           </font>
+                        </Text>
+                        <TextArea fx:id="NotesArea" layoutX="158.0" layoutY="467.0" prefHeight="220.0" prefWidth="465.0" promptText="Here are your notes...." />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -39,12 +86,17 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
           </Tab>
+            <Tab text="Completed">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
           <Tab text="Recommendation">
             <content>
               <AnchorPane minHeight="0.0" minWidth="50.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
           </Tab>
-          <Tab text="Trancript">
+          <Tab text="Transcript">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
@@ -56,7 +108,64 @@
           </Tab>
           <Tab text="Resources">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="162.0" layoutY="465.0" lineSpacing="7.05" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Services Center&#10;Brownsville - The Tower, Main 1.100&#10;Edinburg - 1st Floor Student Services Bldg&#10;Email: ucentral@utrgv.edu&#10;Phone: (888) 882-4026">
+                           <font>
+                              <Font name="Times New Roman" size="25.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UCenteral and  Registrars Office" underline="true">
+                           <font>
+                              <Font name="Times New Roman" size="30.0" />
+                           </font>
+                        </Text>
+                        <Hyperlink fx:id="MajorInfo" layoutX="348.0" layoutY="338.0" onAction="#GoToMajorInfo" text="https://www.utrgv.edu/en-us/academics/undergraduate/index.htm">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Hyperlink>
+                        <Text layoutX="162.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All Major Information:">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="164.0" layoutY="185.0" lineSpacing="7.5" strokeType="OUTSIDE" strokeWidth="0.0" text="One West University Drive&#10;Office: Main Rm 1.400&#10;Brownsville, TX 78520&#10;Phone: 956-882-7362">
+                           <font>
+                              <Font name="Times New Roman" size="25.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="165.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Academic Advising Center " underline="true">
+                           <font>
+                              <Font name="Times New Roman" size="30.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="165.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Here are some resources...">
+                           <font>
+                              <Font name="Times New Roman" size="27.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="165.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Need further assistance?">
+                           <font>
+                              <Font name="Times New Roman" size="40.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="476.0" layoutY="184.0" lineSpacing="7.5" strokeType="OUTSIDE" strokeWidth="0.0" text="1201 West University Drive&#10;Edinburg,TX 78539&#10;Office: Southwick Hall Rm 101 A&#10;Phone:956-665-7120">
+                           <font>
+                              <Font name="Times New Roman" size="25.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="162.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Setup an appointment online:">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Text>
+                        <Hyperlink fx:id="OnlineAppt" layoutX="397.0" layoutY="301.0" onAction="#GoToOnlineAppt" text="https://www.utrgv.edu/advising/index.htm">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Hyperlink>
+                     </children></AnchorPane>
             </content>
           </Tab>
         </tabs>

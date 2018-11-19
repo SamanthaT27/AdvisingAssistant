@@ -6,6 +6,7 @@
 package Register;
 
 import connectivity.ConnectionClass;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -24,7 +25,13 @@ import javafx.scene.text.Text;
 import java.sql.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.xml.bind.DatatypeConverter;
 /**
  * FXML Controller class
@@ -60,6 +67,9 @@ public class RegisterPageController implements Initializable {
     private ChoiceBox<String> Dep_MenuButton;
     @FXML
     private PasswordField Password_Txtbx;
+    @FXML
+    private Button backButton;
+
     
 
     
@@ -223,6 +233,23 @@ public class RegisterPageController implements Initializable {
            }
     }
     }
+   @FXML
+    void goBack(ActionEvent event) throws IOException {
+        ((Node)event.getSource()).getScene().getWindow().hide();//this is to be able to load to the new page and hide the previous page
+            loadWindow("/advisingassistant2/FXMLDocument.fxml","Login Page");
+    }
+    private void loadWindow(String location,String title) throws IOException{//method to be able to open a new window, can be used multiple times 
+        Parent root=FXMLLoader.load(getClass().getResource(location));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(scene);
+        stage.setTitle(title);
+        stage.setMaxWidth(1024);
+        stage.setMaxHeight(768);
+        stage.setResizable(false);
+        stage.show();
+    }
+
     private String hashPass(String p) throws NoSuchAlgorithmException
     {
         //This hashes the password using SHA-256
