@@ -193,8 +193,10 @@ public class RegisterPageController implements Initializable {
            //Inserts a new row into the student table
            String Ssql = "Insert into Student Values ('"+suser+"','"+pass+"','"+fname+"','"+lname+"','"+major+"',"+sid+")";
            statement.executeUpdate(Ssql);
-           //a table is created for each student user to store all classes taken/registered for
-           String newTable="Create Table "+suser+"(course Varchar(4), courseNum Varchar(4), courseName Varchar(30), credit int);";
+
+           
+           String newTable="Create Table "+suser+"(course Varchar(4), courseNum Varchar(4), courseName Varchar(30), credit int, grade CHAR(1), stat VARCHAR(12));";
+
            statement.executeUpdate(newTable);
            }
            catch(Exception e)
