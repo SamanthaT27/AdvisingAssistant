@@ -5,11 +5,12 @@
  */
 package LoggedIn;
 
-import advisingassistant2.*;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
@@ -17,6 +18,8 @@ import javafx.stage.Stage;
  * @author Sammy
  */
 public class LoggedIn extends Application {
+    @FXML
+    private Button Save;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -25,8 +28,16 @@ public class LoggedIn extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        stage.setMaxWidth(1024);
+        stage.setMaxHeight(768);
+        stage.setResizable(false);
+        stage.sizeToScene();
         stage.show();
+        
+     
     }
+    
+    
     /**
      * @param args the command line arguments
      */
