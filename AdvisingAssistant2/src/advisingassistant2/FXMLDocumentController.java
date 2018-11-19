@@ -72,13 +72,23 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void loginUser(ActionEvent event) throws IOException, SQLException, NoSuchAlgorithmException {//This is the login buttons event handler 
+    private void loginUser(ActionEvent event) throws IOException, SQLException, NoSuchAlgorithmException 
+    {//This is the login buttons event handler 
     String name=user.getText();//gets the username and password text and stores them for later use on verification
     String passw=pass.getText();
     
-    ConnectionClass connectionClass=new ConnectionClass();
+    ConnectionClass connectionClass=new ConnectionClass();//connection to the database
         Connection connection = connectionClass.getConnection();
-        Statement statement = connection.createStatement();
+        Statement statement = connection.createStatement();//sttement is used to sent sql statements to remote db
+        String logType;//When radio button to specify if the user is faculty/student the value is placed in logtype
+    if(Faculty_RadioButton.isSelected())
+    {
+        logType="Faculty";
+    }
+    else
+    {
+        logType="Student";
+    }
         
     if(name.isEmpty()|| passw.isEmpty()){//If the username and password are empty and error is made with the message all fields are required 
         Alert alert=new Alert(AlertType.ERROR);
@@ -86,44 +96,44 @@ public class FXMLDocumentController implements Initializable {
         alert.setContentText("Fill all required fields!");
         alert.showAndWait();
     }else{
-        
-        String sql1="Select Username From Student Where Username ='"+name+"';";
+        //if username and password are not empty, sql statement is executed to search for username
+        String sql1="Select Username From "+logType+" Where Username ='"+name+"';";
         ResultSet userName=statement.executeQuery(sql1);
         String UN;    
-        if (userName.next())
+        if (userName.next())//if username exists
             {
                 UN=userName.getString(1);
-                
-                String sql2="Select Password From Student Where Username ='" + name+"';";
-        ResultSet P=statement.executeQuery(sql2);
-        String pass;  
-        String attemptPass;
-        if (P.next())
-            {
-                pass=P.getString(1);
-                attemptPass=hashPass(passw);
+                //Select statement gets the password from DB
+                String sql2="Select Password From "+logType+" Where Username ='" + name+"';";
+                ResultSet P=statement.executeQuery(sql2);
+                String pass;//will store DB hashed password in it  
+                String attemptPass;//attempt pass will be storing the hashed password attempted at login
+                if (P.next())
+                {
+                    pass=P.getString(1);
+                    attemptPass=hashPass(passw);//password entered at log in is hashed prior to comparing to stored hashed password
             
-        if(name.equals(UN)&&pass.equals(attemptPass)){//If the username and password are correct and match the set values 
-            FXMLDocumentController.uname=name;//this is to be able to set uname to name and be seen on the next page 
-            //code for the next page
-            ((Node)event.getSource()).getScene().getWindow().hide();//this is to be able to load to the new page and hide the previous page
-            loadWindow("/LoggedIn/loggedIn.fxml","Logged In");//calling method loadwindow with the relevant filenamelocation and filename.fxml and the title of the window
+                    if(name.equals(UN)&&pass.equals(attemptPass)){//If the username and password are correct and match the set values 
+                    FXMLDocumentController.uname=name;//this is to be able to set uname to name and be seen on the next page 
+                    //code for the next page
+                    ((Node)event.getSource()).getScene().getWindow().hide();//this is to be able to load to the new page and hide the previous page
+                    loadWindow("/LoggedIn/loggedIn.fxml","Logged In");//calling method loadwindow with the relevant filenamelocation and filename.fxml and the title of the window
         
-        }
+                    }
+                }
+                else{
+                    Alert alert=new Alert(AlertType.ERROR);//If the username and password are incorrect then an error appears
+                    alert.setHeaderText(null);
+                    alert.setContentText("Username or Password is incorrect!");
+                    alert.showAndWait();
+                    }
             }
-        else{
-        Alert alert=new Alert(AlertType.ERROR);//If the username and password are incorrect then an error appears
-        alert.setHeaderText(null);
-        alert.setContentText("Username or Password is incorrect!");
-        alert.showAndWait();
-        }
-            }
-        else{    Alert alert=new Alert(AlertType.ERROR);
+        else{    Alert alert=new Alert(AlertType.ERROR);//if no username is found in the DB, error appears
         alert.setHeaderText(null);
         alert.setContentText("No username exists!");
         alert.showAndWait();}
         
-    }
+        }
     }
     
      @FXML
@@ -165,6 +175,7 @@ public class FXMLDocumentController implements Initializable {
     }
     private String hashPass(String p) throws NoSuchAlgorithmException
     {
+        //This function hashes the password using SHA-256
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         byte[] digest=md.digest(p.getBytes(StandardCharsets.UTF_8));
         String pass = DatatypeConverter.printHexBinary(digest).toLowerCase();
