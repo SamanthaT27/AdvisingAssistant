@@ -44,8 +44,7 @@ import javax.xml.bind.DatatypeConverter;
  */
 public class FXMLDocumentController implements Initializable {
     static ObservableList list=FXCollections.observableArrayList();//carries data like an arrya but observes changes and makes changes within the array
-    String username="Samantha";//set values fro username and password-must be reworked for database use
-    String password="123";
+   
     
     static String uname=""; //makes a variable uname to be used to store the value from the text field for the next page to use 
 
@@ -61,7 +60,8 @@ public class FXMLDocumentController implements Initializable {
     private RadioButton Student_RadioButton;
     @FXML
     private RadioButton Faculty_RadioButton;
-    
+   
+
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -154,12 +154,14 @@ public class FXMLDocumentController implements Initializable {
 
     }
     
+  
+    
     @FXML
     void OpenRegister(ActionEvent event) throws IOException {
-        ((Node)event.getSource()).getScene().getWindow().hide();//this is to be able to load to the new page and hide the previous page
+        ((Node)event.getSource()).getScene().getWindow().hide();
             loadWindow("/Register/RegisterPage.fxml","Register");
             
-            //open register
+           
             
             
 
@@ -171,6 +173,9 @@ public class FXMLDocumentController implements Initializable {
         Stage stage = new Stage(StageStyle.DECORATED);
         stage.setScene(scene);
         stage.setTitle(title);
+        stage.setMaxWidth(1150);
+        stage.setMaxHeight(795);
+        stage.setResizable(false);
         stage.show();
     }
     private String hashPass(String p) throws NoSuchAlgorithmException

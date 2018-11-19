@@ -16,7 +16,7 @@
             <Image url="@../Image/Login%20and%20Register.png" />
          </image>
       </ImageView>
-      <VBox alignment="CENTER" layoutX="14.0" layoutY="7.0" prefHeight="768.0" prefWidth="1024.0" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="7.0">
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Advising Assistant" textAlignment="CENTER" wrappingWidth="361.13671875">
                <font>
