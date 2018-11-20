@@ -66,10 +66,15 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        Student_RadioButton.setSelected(true);
     }
     public static String getVariable(){//method to get the username that is entered in the text field 
         return uname;
     }
+    
+    
+       
+    
 
     @FXML
     private void loginUser(ActionEvent event) throws IOException, SQLException, NoSuchAlgorithmException 
@@ -165,6 +170,25 @@ public class FXMLDocumentController implements Initializable {
             
             
 
+    }
+    
+    static String type = null;
+    
+    public String getType(){
+        if(Student_RadioButton.isArmed())
+        {
+            type = "student";
+        }
+        else if(Faculty_RadioButton.isArmed())
+        {
+            type = "faculty";
+        }
+        return type;
+    }
+    
+    public static String User_type()
+    {
+        return type;
     }
     
     private void loadWindow(String location,String title) throws IOException{//method to be able to open a new window, can be used multiple times 

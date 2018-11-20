@@ -114,7 +114,18 @@ public class LoggedInController implements Initializable {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyy HH:mm:ss");
         Date date = new Date();
         Date_txt.setText("Today's date is: " + dateFormat.format(date));   
-         
+       // String user_type = FXMLDocumentController.User_type();
+        
+       // try{
+       //     if(user_type.equals("student"))
+       //     {
+       //         SearchStudent.setDisable(true);
+       //     }
+       // }
+       //  catch(Exception e)
+       //  {
+       //      SearchStudent.setDisable(false);
+       //  }
     }        
      @FXML
     void GoToMajorInfo(ActionEvent event) throws URISyntaxException, IOException {
