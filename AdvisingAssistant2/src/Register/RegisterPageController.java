@@ -30,6 +30,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.xml.bind.DatatypeConverter;
@@ -69,6 +70,8 @@ public class RegisterPageController implements Initializable {
     private PasswordField Password_Txtbx;
     @FXML
     private Button backButton;
+    @FXML
+    private PasswordField Password_Conformation;
 
     
 
@@ -127,8 +130,24 @@ public class RegisterPageController implements Initializable {
         
          String fname=First_Name_TxtBx.getText();//gets first name
          String lname=Last_name_TxtBx.getText();//gets last name
-         String pass = hashPass(Password_Txtbx.getText());//gets hashed version of the password
+         String pass = null; //creates the password text that will be passed on to the databse
+         String FirstPassword = Password_Txtbx.getText(); //gets the password
+         String SecondPassword = Password_Conformation.getText();//gets the password to confirm and compare
         
+         try{            
+            if(!(FirstPassword.equals(SecondPassword)))
+             {
+                 Alert alert = new Alert(AlertType.ERROR);
+                 alert.setTitle("Error in Password");
+                 alert.setHeaderText(null);
+                 alert.setContentText("Your password are not the same!");
+                 alert.showAndWait();
+             }
+         }
+         catch(Exception b)
+         {
+            pass = hashPass(Password_Txtbx.getText());
+         
         if (StaffRadioButton.isSelected())//if Staff is selected
         {
            try{
@@ -231,8 +250,9 @@ public class RegisterPageController implements Initializable {
                 alert.setContentText("Fill in empty spaces!");
                 alert.showAndWait();
            }
+        }
     }
-    }
+}
    @FXML
     void goBack(ActionEvent event) throws IOException {
         ((Node)event.getSource()).getScene().getWindow().hide();//this is to be able to load to the new page and hide the previous page
