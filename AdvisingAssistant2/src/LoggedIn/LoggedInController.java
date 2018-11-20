@@ -149,11 +149,9 @@ public class LoggedInController implements Initializable {
         String Message= EmailText.getText();
         
         Properties pros = new Properties(); 
-        pros.put("mail.smtp.host", "smtp.gmail.com");
-        pros.put("mail.smtp.socketFactory.port", "465");//SSL protocol port number is 465 
+        //SSL protocol port number is 465 
         pros.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         pros.put("mail.smtp.auth", "true");
-        pros.put("mail.smtp.port", "465");
         pros.put("mail.smtp.starttls.enable", "true");
         pros.put("mail.smtp.host", "outlook.office365.com");
         pros.put("mail.smtp.port", "587");
