@@ -16,7 +16,7 @@
             <Image url="@../Image/Login%20and%20Register.png" />
          </image>
       </ImageView>
-      <VBox layoutX="476.0" layoutY="194.0" prefHeight="354.0" prefWidth="698.0">
+      <VBox layoutX="475.0" layoutY="175.0" prefHeight="354.0" prefWidth="698.0">
          <children>
             <TextField fx:id="First_Name_TxtBx" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
                <VBox.margin>
@@ -78,50 +78,55 @@
             <Font size="39.0" />
          </font>
       </Text>
-      <Button fx:id="Submit_button" layoutX="524.0" layoutY="716.0" mnemonicParsing="false" onAction="#SubmitAction" prefHeight="49.0" prefWidth="133.0" text="Submit">
+      <Button fx:id="Submit_button" layoutX="396.0" layoutY="684.0" mnemonicParsing="false" onAction="#SubmitAction" prefHeight="49.0" prefWidth="133.0" text="Submit">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Text fx:id="First_Name_Label" layoutX="352.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name">
+      <Text fx:id="First_Name_Label" layoutX="352.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="353.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name">
+      <Text layoutX="353.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="356.0" layoutY="605.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+      <Text layoutX="357.0" layoutY="586.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="350.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID">
+      <Text layoutX="350.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="376.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Major">
+      <Text layoutX="376.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Major">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="355.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faculty ID">
+      <Text layoutX="355.0" layoutY="479.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faculty ID">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="335.0" layoutY="553.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department">
+      <Text layoutX="335.0" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="208.0" layoutY="661.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password Conformation">
+      <Text layoutX="208.0" layoutY="638.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password Conformation">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
+      <Button fx:id="backButton" layoutX="641.0" layoutY="684.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#goBack" prefHeight="49.0" prefWidth="133.0" text="Exit">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
