@@ -131,10 +131,12 @@ public class LoggedInController implements Initializable {
         names.setText("Welcome, "+user);//outputs the message welcome,user; user being the values that are given in the text field 
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyy HH:mm:ss");
         Date date = new Date();
+
         Date_txt.setText("Today's date is: " + dateFormat.format(date)); 
         CompletedCredit.setItems(FXCollections.observableArrayList('1','3','4'));
         CompletedGrade.setItems(FXCollections.observableArrayList('A','B','C','D','F'));
         CompletedStatus.setItems(FXCollections.observableArrayList("Completed","Incomplete", "In Progress"));
+
     }        
      @FXML
     void GoToMajorInfo(ActionEvent event) throws URISyntaxException, IOException {
