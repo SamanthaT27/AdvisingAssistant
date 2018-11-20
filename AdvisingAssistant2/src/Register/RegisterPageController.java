@@ -133,10 +133,26 @@ public class RegisterPageController implements Initializable {
          String pass = null; //creates the password text that will be passed on to the databse
          String FirstPassword = Password_Txtbx.getText(); //gets the password
          String SecondPassword = Password_Conformation.getText();//gets the password to confirm and compare
-        
+         
+        try{
+            if(FirstPassword.isEmpty() || SecondPassword.isEmpty())//checks if either one of the password fields is empty
+            {
+                //if either one of the password fields is empty it will show an alert box to notify
+                //the user of the password error. 
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error in Password");
+                alert.setHeaderText(null);
+                alert.setContentText("One or both of your password fields are empty!");
+                alert.showAndWait();
+            }
+        }
+        catch(Exception C)
+        {
          try{            
-            if(!(FirstPassword.equals(SecondPassword)))
+            if(!(FirstPassword.equals(SecondPassword)))//checks if the password and the second password are the same
              {
+                //if they are not the same it will show an alert box to notify the user and allow 
+                //the user to fix the mistake
                  Alert alert = new Alert(AlertType.ERROR);
                  alert.setTitle("Error in Password");
                  alert.setHeaderText(null);
@@ -146,7 +162,7 @@ public class RegisterPageController implements Initializable {
          }
          catch(Exception b)
          {
-            pass = hashPass(Password_Txtbx.getText());
+            pass = hashPass(Password_Txtbx.getText());//hashes the password to be stored in the database
          
         if (StaffRadioButton.isSelected())//if Staff is selected
         {
@@ -252,6 +268,7 @@ public class RegisterPageController implements Initializable {
            }
         }
     }
+  }
 }
    @FXML
     void goBack(ActionEvent event) throws IOException {

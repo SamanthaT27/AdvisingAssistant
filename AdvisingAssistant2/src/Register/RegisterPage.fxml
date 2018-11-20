@@ -83,17 +83,17 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Text fx:id="First_Name_Label" layoutX="352.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name">
+      <Text fx:id="First_Name_Label" layoutX="352.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="353.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name">
+      <Text layoutX="353.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="356.0" layoutY="599.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+      <Text layoutX="356.0" layoutY="605.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
             <Font size="24.0" />
          </font>
@@ -118,7 +118,7 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="208.0" layoutY="657.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password Conformation">
+      <Text layoutX="208.0" layoutY="661.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password Conformation">
          <font>
             <Font size="24.0" />
          </font>
