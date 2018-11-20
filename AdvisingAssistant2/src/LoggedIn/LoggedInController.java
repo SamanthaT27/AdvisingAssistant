@@ -22,6 +22,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +31,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
@@ -53,6 +55,22 @@ import javax.swing.JOptionPane;
  */
 public class LoggedInController implements Initializable {
 
+    @FXML
+    private Button CompleteSub;
+    @FXML
+    private ChoiceBox<?> CompletedGrade;
+     @FXML
+    private ChoiceBox<?> CompletedCredit;
+    @FXML
+    private ChoiceBox<?> CompletedName;
+    @FXML
+    private ChoiceBox<?> CompletedStatus;
+     @FXML
+    private ChoiceBox<?> CompletedNum;
+    @FXML
+    private ChoiceBox<?> CompletedSemester;
+    @FXML
+    private ChoiceBox<?> CompletedSubject;
     @FXML
     private Text names;
     @FXML
@@ -113,19 +131,12 @@ public class LoggedInController implements Initializable {
         names.setText("Welcome, "+user);//outputs the message welcome,user; user being the values that are given in the text field 
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyy HH:mm:ss");
         Date date = new Date();
-        Date_txt.setText("Today's date is: " + dateFormat.format(date));   
-       // String user_type = FXMLDocumentController.User_type();
-        
-       // try{
-       //     if(user_type.equals("student"))
-       //     {
-       //         SearchStudent.setDisable(true);
-       //     }
-       // }
-       //  catch(Exception e)
-       //  {
-       //      SearchStudent.setDisable(false);
-       //  }
+
+        Date_txt.setText("Today's date is: " + dateFormat.format(date)); 
+        CompletedCredit.setItems(FXCollections.observableArrayList('1','3','4'));
+        CompletedGrade.setItems(FXCollections.observableArrayList('A','B','C','D','F'));
+        CompletedStatus.setItems(FXCollections.observableArrayList("Completed","Incomplete", "In Progress"));
+
     }        
      @FXML
     void GoToMajorInfo(ActionEvent event) throws URISyntaxException, IOException {
@@ -226,6 +237,9 @@ public class LoggedInController implements Initializable {
         
         
     }
-   
+   @FXML
+    void SubmitCompleted(ActionEvent event) {
+
+    }
     
 }

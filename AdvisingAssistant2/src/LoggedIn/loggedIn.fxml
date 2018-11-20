@@ -88,7 +88,28 @@
           </Tab>
             <Tab text="Completed">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ChoiceBox fx:id="CompletedSubject" layoutX="167.0" layoutY="124.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="CompletedStatus" layoutX="168.0" layoutY="470.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="CompletedNum" layoutX="168.0" layoutY="192.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="CompletedName" layoutX="169.0" layoutY="265.0" prefHeight="27.0" prefWidth="323.0" />
+                        <ChoiceBox fx:id="CompletedCredit" layoutX="167.0" layoutY="332.0" prefHeight="27.0" prefWidth="65.0" />
+                        <ChoiceBox fx:id="CompletedGrade" layoutX="169.0" layoutY="403.0" prefHeight="27.0" prefWidth="63.0" />
+                        <Text layoutX="172.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject" />
+                        <Text layoutX="176.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course Number:" />
+                        <Text layoutX="174.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course Name:" />
+                        <Text layoutX="177.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Credit:" />
+                        <Text layoutX="178.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grade:" />
+                        <Text layoutX="179.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:" />
+                        <ChoiceBox fx:id="CompletedSemester" layoutX="170.0" layoutY="544.0" prefWidth="150.0" />
+                        <Text layoutX="176.0" layoutY="531.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Semester:">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="CompleteSub" layoutX="417.0" layoutY="607.0" mnemonicParsing="false" onAction="#SubmitCompleted" prefHeight="36.0" prefWidth="81.0" text="Submit" />
+                     </children></AnchorPane>
               </content>
             </Tab>
           <Tab text="Recommendation">
