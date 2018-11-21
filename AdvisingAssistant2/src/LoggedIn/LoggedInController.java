@@ -132,11 +132,20 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
     private TextArea NotesArea;
     @FXML
     private Button Save;
+
     @FXML
     private TextField userName;
     ConnectionClass connectionClass=new ConnectionClass();
     Connection connection=connectionClass.getConnection();
     Statement statement=connection.createStatement();
+
+//     @FXML
+//    private TextField transcript_user;
+//    @FXML
+//    private TextField transcript_view;
+//    @FXML
+//    private Button transcript_submit;
+
 
     public LoggedInController() throws SQLException {
         this.statement = connection.createStatement();
@@ -157,6 +166,7 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
         names.setText("Welcome, "+user);//outputs the message welcome,user; user being the values that are given in the text field 
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyy HH:mm:ss");
         Date date = new Date();
+
 
         Date_txt.setText("Today's date is: " + dateFormat.format(date));
         //set the items into certain choiceboxes
@@ -188,6 +198,13 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
             }
         });
       
+
+        Date_txt.setText("Today's date is: " + dateFormat.format(date)); 
+        CompletedCredit.setItems(FXCollections.observableArrayList("1","3","4"));
+        CompletedGrade.setItems(FXCollections.observableArrayList("A","B","C","D","F"));
+        CompletedStatus.setItems(FXCollections.observableArrayList("Completed","Incomplete", "In Progress"));
+
+
     }        
      @FXML
     void GoToMajorInfo(ActionEvent event) throws URISyntaxException, IOException {
@@ -324,6 +341,7 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
         
     }
     
+
     @FXML
     void SubjectSelected(String n) throws SQLException
     {
@@ -386,4 +404,16 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
     }
     
     
+
+//    @FXML
+//    void transcript_submit(ActionEvent event) {
+//        System.out.println("Under Construction");
+//
+//    }
+    @FXML
+    void transcript_submit(ActionEvent event) {
+
+    }
+    
+
 }
