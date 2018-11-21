@@ -6,7 +6,10 @@
 package LoggedIn;
 
 import advisingassistant2.FXMLDocumentController;
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
+import connectivity.ConnectionClass;
 import java.awt.Desktop;
+import java.awt.event.MouseEvent;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -15,6 +18,10 @@ import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,6 +30,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +38,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Hyperlink;
@@ -54,6 +63,14 @@ import javax.swing.JOptionPane;
  * @author Sammy
  */
 public class LoggedInController implements Initializable {
+ObservableList<String> credits=FXCollections.observableArrayList("1","2","3");
+ObservableList<String> grades=FXCollections.observableArrayList("A","B","C","D","F");
+ObservableList<String> status=FXCollections.observableArrayList("Completed","Incomplete","In Progress");
+ObservableList<String> sub=FXCollections.observableArrayList("ANTH", "ARTS","ASTR","BIOL","CHEM","COMM","CSCI","DANC","ECON","ENGL","ENST","ENVR"
+,"FILM","FREN","GEOL","HIST","HONR","INDS","MASC","MATH","MGMT","MUSI","PHIL","PHYS","POLS","PSCI","PSYC","QUMT"
+,"SOCI","SPAN","THTF","WRLS","CRIJ");  
+ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", "Spring 2018", "May 2018", "Summer I 2018", "Summer II 2018", "Fall 2018", "Spring 2019");
+
 
     @FXML
     private Button CompleteSub;
@@ -115,6 +132,13 @@ public class LoggedInController implements Initializable {
     private TextArea NotesArea;
     @FXML
     private Button Save;
+
+    @FXML
+    private TextField userName;
+    ConnectionClass connectionClass=new ConnectionClass();
+    Connection connection=connectionClass.getConnection();
+    Statement statement=connection.createStatement();
+
 //     @FXML
 //    private TextField transcript_user;
 //    @FXML
@@ -123,6 +147,11 @@ public class LoggedInController implements Initializable {
 //    private Button transcript_submit;
 
 
+    public LoggedInController() throws SQLException {
+        this.statement = connection.createStatement();
+    }
+    
+    
     
 
 
@@ -138,10 +167,43 @@ public class LoggedInController implements Initializable {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyy HH:mm:ss");
         Date date = new Date();
 
+
+        Date_txt.setText("Today's date is: " + dateFormat.format(date));
+        //set the items into certain choiceboxes
+        CompletedCredit.setItems(credits);
+        CompletedGrade.setItems(grades);
+        CompletedStatus.setItems(status);
+        CompletedSubject.setItems(sub);
+        CompletedSemester.setItems(Semesters);
+        //set choicboxes to being disabled in order to ensure that all data is completed
+        CompletedNum.setDisable(true);
+        CompletedName.setDisable(true);
+        CompletedCredit.setDisable(true);
+        CompletedGrade.setDisable(true);
+        CompletedStatus.setDisable(true);
+        CompletedSemester.setDisable(true);
+        CompleteSub.setDisable(true);
+        
+        String sub;
+        //checks for anychanges in the values of the choiceboxes to allow the next to be available to be clicked
+        
+        CompletedSubject.getSelectionModel().selectedItemProperty().addListener((v,oldvalue,newvalue)->{
+            try {
+                SubjectSelected(newvalue);
+            } catch (SQLException ex) {
+               Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("SQL error!");
+            alert.showAndWait();
+            }
+        });
+      
+
         Date_txt.setText("Today's date is: " + dateFormat.format(date)); 
         CompletedCredit.setItems(FXCollections.observableArrayList("1","3","4"));
         CompletedGrade.setItems(FXCollections.observableArrayList("A","B","C","D","F"));
         CompletedStatus.setItems(FXCollections.observableArrayList("Completed","Incomplete", "In Progress"));
+
 
     }        
      @FXML
@@ -244,10 +306,105 @@ public class LoggedInController implements Initializable {
         
     }
    @FXML
-    void SubmitCompleted(ActionEvent event) {
-
+    void SubmitCompleted(ActionEvent event) throws SQLException 
+    {
+        try{
+        String subject=CompletedSubject.getSelectionModel().getSelectedItem().toString();
+        String num=CompletedNum.getSelectionModel().getSelectedItem().toString();
+        String name=CompletedName.getSelectionModel().getSelectedItem().toString();
+        int cred=Integer.parseInt(CompletedCredit.getSelectionModel().getSelectedItem());
+        String grade="A";
+        try{
+        grade=CompletedGrade.getSelectionModel().getSelectedItem().toString();
+        }
+        catch(Exception e)
+        {
+                    System.out.println("Char error"); 
+        }
+        String stat=CompletedStatus.getSelectionModel().getSelectedItem().toString();
+        //String semester=CompletedSemester.getSelectionModel().getSelectedItem();
+        String user=userName.getText();
+        String sql;
+           // System.out.println("'"+user+" "+subject+"','"+num+"','"+name+"',"+cred+",'"+grade+"','"+stat+"'");
+        sql= "Insert into "+user+" Values ('"+subject+"','"+num+"','"+name+"',"+cred+",'"+grade+"','"+stat+"');";
+        
+        statement.executeUpdate(sql);
+        }
+       catch(Exception e)
+        {
+          Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Error uploading class!");
+            alert.showAndWait();          
+                
+        }
+        
     }
     
+
+    @FXML
+    void SubjectSelected(String n) throws SQLException
+    {
+        String major=n;
+        String CSCI_tab="CSCI_Plan";
+        String CRIJ_tab="CriJus_Plan";
+        String Gen_tab="GeneralCore";
+        CompletedNum.setDisable(false);
+        
+        
+        String csci="Select CourseID, CourseTitle FROM "+CSCI_tab+" Where Subject ='"+major+"';";
+        String crij="Select CourseID,CourseTitle FROM "+CRIJ_tab+" Where Subject ='"+major+"';";
+        String gen="Select CourseID,CourseTitle FROM "+Gen_tab+" Where Subject ='"+major+"';";
+        
+        ResultSet id;
+        ResultSet gid;
+        
+        /*id=statement.executeQuery(gen);
+       while (id.next())
+       {
+           System.out.println(id.getString(1));
+           CompletedNum.getItems().add(id.getString(1));
+       }*/
+        
+       if(major=="CRIJ")
+        {
+            id=statement.executeQuery(crij);
+            
+            while(id.next())
+            {
+               CompletedNum.getItems().add(id.getString(1));
+               CompletedName.getItems().add(id.getString(2));
+            }
+        }
+        else if (major=="CSCI")
+        {
+            id=statement.executeQuery(csci);
+             while(id.next())
+            {
+                CompletedNum.getItems().add(id.getString(1));
+                CompletedName.getItems().add(id.getString(2));
+            }
+        }
+        else
+        {
+            gid=statement.executeQuery(gen);
+             while(gid.next())
+            {
+               CompletedNum.getItems().add(gid.getString(1));
+               CompletedName.getItems().add(gid.getString(2));
+            }
+             
+        }
+        CompletedNum.getSelectionModel().selectedItemProperty().addListener((v,oldvalue,newvalue)->CompletedName.setDisable(false));
+        CompletedName.getSelectionModel().selectedItemProperty().addListener((v,oldvalue,newvalue)->CompletedCredit.setDisable(false));
+        CompletedCredit.getSelectionModel().selectedItemProperty().addListener((v,oldvalue,newvalue)->CompletedGrade.setDisable(false));
+        CompletedGrade.getSelectionModel().selectedItemProperty().addListener((v,oldvalue,newvalue)->CompletedStatus.setDisable(false));
+        CompletedStatus.getSelectionModel().selectedItemProperty().addListener((v,oldvalue,newvalue)->CompletedSemester.setDisable(false));
+        CompletedSemester.getSelectionModel().selectedItemProperty().addListener((v,oldvalue,newvalue)->CompleteSub.setDisable(false));
+    }
+    
+    
+
 //    @FXML
 //    void transcript_submit(ActionEvent event) {
 //        System.out.println("Under Construction");
@@ -258,4 +415,5 @@ public class LoggedInController implements Initializable {
 
     }
     
+
 }

@@ -109,6 +109,9 @@
                            </font>
                         </Text>
                         <Button fx:id="CompleteSub" layoutX="417.0" layoutY="607.0" mnemonicParsing="false" onAction="#SubmitCompleted" prefHeight="36.0" prefWidth="81.0" text="Submit" />
+                        <TextField />
+                        <TextField fx:id="userName" layoutX="583.0" layoutY="124.0" />
+                        <Text layoutX="589.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Username" />
                      </children></AnchorPane>
               </content>
             </Tab>
