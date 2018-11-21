@@ -119,12 +119,120 @@
           </Tab>
           <Tab text="Transcript">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="162.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please confirm your username. ">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="202.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" />
+                        <TextField fx:id="transcript_user" layoutX="276.0" layoutY="165.0" />
+                        <TextArea fx:id="transcript_view" layoutX="162.0" layoutY="295.0" prefHeight="453.0" prefWidth="804.0" />
+                        <Button fx:id="transcript_submit" layoutX="482.0" layoutY="165.0" mnemonicParsing="false" onAction="#transcript_submit" text="Submit" />
+                     </children></AnchorPane>
             </content>
           </Tab>
           <Tab text="Help">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="163.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FAQ" wrappingWidth="277.22216796875">
+                           <font>
+                              <Font size="50.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registration:" wrappingWidth="224.21875">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home:" wrappingWidth="224.21875">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule:" wrappingWidth="224.21875">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="465.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed:" wrappingWidth="206.927734375">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="570.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recommendation:">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="674.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transcript:" wrappingWidth="196.52880859375">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Q - Why am I getting an error when trying to register as a faculty member?">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A - Your credentials could be incorrect or you are not approved by our administrators." wrappingWidth="819.14697265625">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Q - Why am I not able to use my Gmail account to send emails?" wrappingWidth="606.03564453125">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A - Only the use of Outlook email accounts are accepted at this time.">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="707.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Q - I accidently entered a class that I haven't taken yet, how do I remove it?">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="743.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A - Please send an email to Matthew.rey.garza01@utrgv.edu or Mathew.sosa@utrgv.edu for further assistance.">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="499.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Q - Why is my course is not showing up?" wrappingWidth="355.21533203125">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="532.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A - Course information must be entered in the following order: Subject, Course #, Course Name and following fields can be in any order.">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="397.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Q - Why is one or more of my courses is not showing up under my schedule?">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A - You may have entered the class with an incorrect status, please contact Matthew.rey.garza01@utrgv.edu or Mathew.sosa@utrgv.edu">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="603.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Q - (Under Construction) ">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="163.0" layoutY="637.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A - (Under Construction)">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Text>
+                     </children></AnchorPane>
             </content>
           </Tab>
           <Tab text="Resources">

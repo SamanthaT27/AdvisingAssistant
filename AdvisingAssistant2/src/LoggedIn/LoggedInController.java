@@ -115,6 +115,12 @@ public class LoggedInController implements Initializable {
     private TextArea NotesArea;
     @FXML
     private Button Save;
+//     @FXML
+//    private TextField transcript_user;
+//    @FXML
+//    private TextField transcript_view;
+//    @FXML
+//    private Button transcript_submit;
 
 
     
@@ -239,6 +245,16 @@ public class LoggedInController implements Initializable {
     }
    @FXML
     void SubmitCompleted(ActionEvent event) {
+
+    }
+    
+//    @FXML
+//    void transcript_submit(ActionEvent event) {
+//        System.out.println("Under Construction");
+//
+//    }
+    @FXML
+    void transcript_submit(ActionEvent event) {
 
     }
     
