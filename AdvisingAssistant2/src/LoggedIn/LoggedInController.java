@@ -58,19 +58,19 @@ public class LoggedInController implements Initializable {
     @FXML
     private Button CompleteSub;
     @FXML
-    private ChoiceBox<?> CompletedGrade;
+    private ChoiceBox<String> CompletedGrade;
      @FXML
-    private ChoiceBox<?> CompletedCredit;
+    private ChoiceBox<String> CompletedCredit;
     @FXML
-    private ChoiceBox<?> CompletedName;
+    private ChoiceBox<String> CompletedName;
     @FXML
-    private ChoiceBox<?> CompletedStatus;
+    private ChoiceBox<String> CompletedStatus;
      @FXML
-    private ChoiceBox<?> CompletedNum;
+    private ChoiceBox<String> CompletedNum;
     @FXML
-    private ChoiceBox<?> CompletedSemester;
+    private ChoiceBox<String> CompletedSemester;
     @FXML
-    private ChoiceBox<?> CompletedSubject;
+    private ChoiceBox<String> CompletedSubject;
     @FXML
     private Text names;
     @FXML
@@ -133,8 +133,8 @@ public class LoggedInController implements Initializable {
         Date date = new Date();
 
         Date_txt.setText("Today's date is: " + dateFormat.format(date)); 
-        CompletedCredit.setItems(FXCollections.observableArrayList('1','3','4'));
-        CompletedGrade.setItems(FXCollections.observableArrayList('A','B','C','D','F'));
+        CompletedCredit.setItems(FXCollections.observableArrayList("1","3","4"));
+        CompletedGrade.setItems(FXCollections.observableArrayList("A","B","C","D","F"));
         CompletedStatus.setItems(FXCollections.observableArrayList("Completed","Incomplete", "In Progress"));
 
     }        
