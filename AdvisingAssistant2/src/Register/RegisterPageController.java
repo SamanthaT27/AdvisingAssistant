@@ -135,33 +135,17 @@ public class RegisterPageController implements Initializable {
          String SecondPassword = Password_Conformation.getText();//gets the password to confirm and compare
          
         try{
-            if(FirstPassword.isEmpty() || SecondPassword.isEmpty())//checks if either one of the password fields is empty
-            {
-                //if either one of the password fields is empty it will show an alert box to notify
-                //the user of the password error. 
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Error in Password");
-                alert.setHeaderText(null);
-                alert.setContentText("One or both of your password fields are empty!");
-                alert.showAndWait();
-            }
-        }
-        catch(Exception C)
-        {
-         try{            
-            if(!(FirstPassword.equals(SecondPassword)))//checks if the password and the second password are the same
-             {
-                //if they are not the same it will show an alert box to notify the user and allow 
-                //the user to fix the mistake
-                 Alert alert = new Alert(AlertType.ERROR);
-                 alert.setTitle("Error in Password");
-                 alert.setHeaderText(null);
-                 alert.setContentText("Your password are not the same!");
-                 alert.showAndWait();
-             }
-         }
-         catch(Exception b)
-         {
+            if(!(FirstPassword.equals(SecondPassword)))
+           {
+              Alert alert=new Alert(Alert.AlertType.ERROR);//there are any empty spaces
+              alert.setHeaderText(null);
+                alert.setContentText("There may be an empty field or your password do not match.");
+               alert.showAndWait(); 
+           }
+        }  
+        catch(Exception t)
+       {           
+                 
             pass = hashPass(Password_Txtbx.getText());//hashes the password to be stored in the database
          
         if (StaffRadioButton.isSelected())//if Staff is selected
@@ -239,7 +223,7 @@ public class RegisterPageController implements Initializable {
            String Ssql = "Insert into Student Values ('"+suser+"','"+pass+"','"+fname+"','"+lname+"','"+major+"',"+sid+")";
            statement.executeUpdate(Ssql);
            //a table is created for each student user to store all classes taken/registered for
-           String newTable="Create Table "+suser+"(course Varchar(4), courseNum Varchar(4), courseName Varchar(30), credit int, grade CHAR(1), stat VARCHAR(12));";
+           String newTable="Create Table "+suser+"(course Varchar(4), courseNum Varchar(4), courseName Varchar(100), credit int, grade CHAR(1), stat VARCHAR(12));";
            statement.executeUpdate(newTable);
            }
            catch(Exception e)
@@ -264,12 +248,13 @@ public class RegisterPageController implements Initializable {
                Alert alert=new Alert(Alert.AlertType.ERROR);//there are any empty spaces
                 alert.setHeaderText(null);
                 alert.setContentText("Fill in empty spaces!");
-                alert.showAndWait();
-           }
-        }
-    }
+                alert.showAndWait();        
+          
+   }
+   }
   }
 }
+    
    @FXML
     void goBack(ActionEvent event) throws IOException {
         ((Node)event.getSource()).getScene().getWindow().hide();//this is to be able to load to the new page and hide the previous page
