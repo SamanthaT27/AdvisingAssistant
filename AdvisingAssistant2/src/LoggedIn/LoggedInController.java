@@ -77,9 +77,9 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
     @FXML
     private ChoiceBox<String> CompletedGrade;
      @FXML
-    private ChoiceBox<String> CompletedCredit;
+    private TextField CompletedCredit;
     @FXML
-    private ChoiceBox<String> CompletedName;
+    private TextField CompletedName;
     @FXML
     private ChoiceBox<String> CompletedStatus;
      @FXML
@@ -170,7 +170,6 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
 
         Date_txt.setText("Today's date is: " + dateFormat.format(date));
         //set the items into certain choiceboxes
-        CompletedCredit.setItems(credits);
         CompletedGrade.setItems(grades);
         CompletedStatus.setItems(status);
         CompletedSubject.setItems(sub);
@@ -200,7 +199,6 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
       
 
         Date_txt.setText("Today's date is: " + dateFormat.format(date)); 
-        CompletedCredit.setItems(FXCollections.observableArrayList("1","3","4"));
         CompletedGrade.setItems(FXCollections.observableArrayList("A","B","C","D","F"));
         CompletedStatus.setItems(FXCollections.observableArrayList("Completed","Incomplete", "In Progress"));
 
@@ -311,8 +309,8 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
         try{
         String subject=CompletedSubject.getSelectionModel().getSelectedItem().toString();
         String num=CompletedNum.getSelectionModel().getSelectedItem().toString();
-        String name=CompletedName.getSelectionModel().getSelectedItem().toString();
-        int cred=Integer.parseInt(CompletedCredit.getSelectionModel().getSelectedItem());
+        String name=CompletedName.getText();
+        int cred=Integer.parseInt(CompletedCredit.getText());
         String grade="A";
         try{
         grade=CompletedGrade.getSelectionModel().getSelectedItem().toString();
@@ -322,13 +320,21 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
                     System.out.println("Char error"); 
         }
         String stat=CompletedStatus.getSelectionModel().getSelectedItem().toString();
-        //String semester=CompletedSemester.getSelectionModel().getSelectedItem();
+        String semester=CompletedSemester.getSelectionModel().getSelectedItem();
         String user=userName.getText();
         String sql;
            // System.out.println("'"+user+" "+subject+"','"+num+"','"+name+"',"+cred+",'"+grade+"','"+stat+"'");
-        sql= "Insert into "+user+" Values ('"+subject+"','"+num+"','"+name+"',"+cred+",'"+grade+"','"+stat+"');";
-        
+        try{
+        sql= "Insert into "+user+" Values('"+subject+"','"+num+"','"+name+"',"+cred+",'"+grade+"','"+stat+"','"+semester+"');";
         statement.executeUpdate(sql);
+      }
+        catch(Exception e)
+        {
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Class has been uploaded before!");
+            alert.showAndWait();
+       }
         }
        catch(Exception e)
         {
@@ -352,9 +358,9 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
         CompletedNum.setDisable(false);
         
         
-        String csci="Select CourseID, CourseTitle FROM "+CSCI_tab+" Where Subject ='"+major+"';";
-        String crij="Select CourseID,CourseTitle FROM "+CRIJ_tab+" Where Subject ='"+major+"';";
-        String gen="Select CourseID,CourseTitle FROM "+Gen_tab+" Where Subject ='"+major+"';";
+        String csci="Select * FROM "+CSCI_tab+" Where Subject ='"+major+"';";
+        String crij="Select * FROM "+CRIJ_tab+" Where Subject ='"+major+"';";
+        String gen="Select * FROM "+Gen_tab+" Where Subject ='"+major+"';";
         
         ResultSet id;
         ResultSet gid;
@@ -372,8 +378,8 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
             
             while(id.next())
             {
-               CompletedNum.getItems().add(id.getString(1));
-               CompletedName.getItems().add(id.getString(2));
+               CompletedNum.getItems().add(id.getString(3));
+               //CompletedName.getItems().add(id.getString(2));
             }
         }
         else if (major=="CSCI")
@@ -381,8 +387,8 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
             id=statement.executeQuery(csci);
              while(id.next())
             {
-                CompletedNum.getItems().add(id.getString(1));
-                CompletedName.getItems().add(id.getString(2));
+                CompletedNum.getItems().add(id.getString(3));
+                //CompletedName.getItems().add(id.getString(2));
             }
         }
         else
@@ -390,20 +396,66 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
             gid=statement.executeQuery(gen);
              while(gid.next())
             {
-               CompletedNum.getItems().add(gid.getString(1));
-               CompletedName.getItems().add(gid.getString(2));
+               CompletedNum.getItems().add(gid.getString(3));
+               //CompletedName.getItems().add(gid.getString(2));
             }
              
         }
-        CompletedNum.getSelectionModel().selectedItemProperty().addListener((v,oldvalue,newvalue)->CompletedName.setDisable(false));
+       
+        CompletedNum.getSelectionModel().selectedItemProperty().addListener((v,old,newv)->
+        { 
+            try{ 
+                Classfill(newv, major); 
+                }
+                catch(Exception e)
+                {
+                    Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Error in selecting Course Number!");
+            alert.showAndWait();
+                    }
+        });
+
+       CompletedNum.getSelectionModel().selectedItemProperty().addListener((v,oldvalue,newvalue)->CompletedGrade.setDisable(false));
+        /*CompletedNum.getSelectionModel().selectedItemProperty().addListener((v,oldvalue,newvalue)->CompletedName.setDisable(false));
         CompletedName.getSelectionModel().selectedItemProperty().addListener((v,oldvalue,newvalue)->CompletedCredit.setDisable(false));
-        CompletedCredit.getSelectionModel().selectedItemProperty().addListener((v,oldvalue,newvalue)->CompletedGrade.setDisable(false));
+        CompletedCredit.getSelectionModel().selectedItemProperty().addListener((v,oldvalue,newvalue)->CompletedGrade.setDisable(false));*/
         CompletedGrade.getSelectionModel().selectedItemProperty().addListener((v,oldvalue,newvalue)->CompletedStatus.setDisable(false));
         CompletedStatus.getSelectionModel().selectedItemProperty().addListener((v,oldvalue,newvalue)->CompletedSemester.setDisable(false));
         CompletedSemester.getSelectionModel().selectedItemProperty().addListener((v,oldvalue,newvalue)->CompleteSub.setDisable(false));
     }
     
-    
+     @FXML
+    void Classfill(String n, String m) throws SQLException
+    {
+        String CourseNum=n;
+        String major=m;
+        String ClassDb=" ";
+        ResultSet nid;
+        
+            if (major=="CSCI")
+                ClassDb="CSCI_Plan";
+            else if(major=="CRIJ")
+                ClassDb="CriJus_Plan";
+            else
+                ClassDb="GeneralCore";
+        
+        String sqlst="Select * From "+ ClassDb+ " WHERE CourseID='"+CourseNum+"' AND Subject='"+major+"';";
+       
+        
+        nid=statement.executeQuery(sqlst);
+        nid.next();
+        String name=nid.getString(5);
+        String credit=nid.getString(4);
+        
+        CompletedName.setText(name);
+        CompletedCredit.setText(credit);
+        CompletedName.setDisable(false);
+        CompletedCredit.setDisable(false);
+        CompletedName.setEditable(false);
+        CompletedCredit.setEditable(false);
+        
+    }
 
 //    @FXML
 //    void transcript_submit(ActionEvent event) {

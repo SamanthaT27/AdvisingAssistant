@@ -93,8 +93,6 @@
                         <ChoiceBox fx:id="CompletedSubject" layoutX="167.0" layoutY="124.0" prefWidth="150.0" />
                         <ChoiceBox fx:id="CompletedStatus" layoutX="168.0" layoutY="470.0" prefWidth="150.0" />
                         <ChoiceBox fx:id="CompletedNum" layoutX="168.0" layoutY="192.0" prefWidth="150.0" />
-                        <ChoiceBox fx:id="CompletedName" layoutX="169.0" layoutY="265.0" prefHeight="27.0" prefWidth="323.0" />
-                        <ChoiceBox fx:id="CompletedCredit" layoutX="167.0" layoutY="332.0" prefHeight="27.0" prefWidth="65.0" />
                         <ChoiceBox fx:id="CompletedGrade" layoutX="169.0" layoutY="403.0" prefHeight="27.0" prefWidth="63.0" />
                         <Text layoutX="172.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject" />
                         <Text layoutX="176.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course Number:" />
@@ -109,9 +107,10 @@
                            </font>
                         </Text>
                         <Button fx:id="CompleteSub" layoutX="417.0" layoutY="607.0" mnemonicParsing="false" onAction="#SubmitCompleted" prefHeight="36.0" prefWidth="81.0" text="Submit" />
-                        <TextField />
                         <TextField fx:id="userName" layoutX="583.0" layoutY="124.0" />
                         <Text layoutX="589.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Username" />
+                        <TextField fx:id="CompletedName" layoutX="167.0" layoutY="265.0" prefHeight="27.0" prefWidth="370.0" />
+                        <TextField fx:id="CompletedCredit" layoutX="167.0" layoutY="334.0" prefHeight="27.0" prefWidth="63.0" />
                      </children></AnchorPane>
               </content>
             </Tab>
