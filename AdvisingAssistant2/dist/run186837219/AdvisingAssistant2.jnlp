@@ -8,9 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-
-    <jar href="AdvisingAssistant2.jar" size="512622" download="eager" />
-
+    <jar href="AdvisingAssistant2.jar" size="512841" download="eager" />
     <jar href="lib/dsn.jar" size="19171" download="eager" />
     <jar href="lib/gimap.jar" size="14769" download="eager" />
     <jar href="lib/imap.jar" size="181492" download="eager" />

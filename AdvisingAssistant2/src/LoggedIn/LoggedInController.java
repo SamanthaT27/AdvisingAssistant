@@ -149,10 +149,24 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
 
     @FXML
     private TextField userName;
+    @FXML
+    private TableColumn<Recommended, String> RecCredCol;
+    @FXML
+    private TableColumn<Recommended, String> RecNumCol;
+    @FXML
+    private TableColumn<Recommended, String> RecSubCol;
+    @FXML
+    private TableColumn<Recommended, String> RecNameCol;
+    @FXML
+    private TableView<Recommended> RecommendedTable;
     
     private ObservableList<Schedule> classes;
+
     
     private ObservableList<Transcript> Tclasses;
+
+    private ObservableList<Recommended> recommended;
+
     ConnectionClass connectionClass=new ConnectionClass();
     Connection connection=connectionClass.getConnection();
     Statement statement=connection.createStatement();
@@ -205,8 +219,13 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyy HH:mm:ss");
         Date date = new Date();
         setScheduleTable();
+        setRecommendedTable();
         classes=FXCollections.observableArrayList();
+
         Tclasses=FXCollections.observableArrayList();
+
+        recommended=FXCollections.observableArrayList();
+
         Date_txt.setText("Today's date is: " + dateFormat.format(date));
         //set the items into certain choiceboxes
         CompletedGrade.setItems(grades);
@@ -236,8 +255,25 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
             alert.showAndWait();
         }
         String sub;
+        String major=" ";
         //checks for anychanges in the values of the choiceboxes to allow the next to be available to be clicked
-        
+    try {        
+        major=getMajor(user);
+    } catch (SQLException ex) {
+        Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Error in getting major to determine recommended courses!");
+            alert.showAndWait();
+    }
+        try{
+            RecommendedTableFill(user,major);
+        }
+        catch(SQLException e){
+             Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Error in Displaying RecommendedCourses!");
+            alert.showAndWait();
+        }
         CompletedSubject.getSelectionModel().selectedItemProperty().addListener((v,oldvalue,newvalue)->{
             try {
                 SubjectSelected(newvalue);
@@ -266,6 +302,8 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
             alert.showAndWait();
                 }
         });
+        
+        
     }        
      @FXML
     void GoToMajorInfo(ActionEvent event) throws URISyntaxException, IOException {
@@ -531,9 +569,58 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
         ResultSet sem=statement.executeQuery(sql);
         while(sem.next())
         {
+            System.out.println(sem.getString(1));
            classes.add(new Schedule(sem.getString(1), sem.getString(2),sem.getString(3)));
         }
         ScheduleTable.setItems(classes);
+    }
+    @FXML 
+    void RecommendedTableFill(String user, String major)throws SQLException
+    {
+        String usr=user;
+        String maj=major;
+        String table="GeneralCore";
+        
+        if(maj.equals("Computer Science"))
+        {
+            table="CSCI_Plan";
+        }
+        else if (maj.equals("Criminal Justice"))
+        {
+            table="CriJus_Plan";
+        }
+        
+        String sql="Select Subject, CourseID, Credits, CourseTitle From "+ table+" Left Join "+ usr+" ON "+usr+".courseName="+table+".CourseTitle WHERE "+usr+".courseName IS NULL;";
+        if(!maj.equals("GeneralCore"))
+        {
+             String sql2="Select Subject, CourseID, Credits, CourseTitle From GeneralCore gc Left Join "+ usr+" ON "+usr+".courseName=gc.CourseTitle WHERE "+usr+".courseName IS NULL;";
+             ResultSet gclist=statement.executeQuery(sql2);
+             while(gclist.next())
+             {
+                 recommended.add(new Recommended(gclist.getString(1),gclist.getString(2),gclist.getString(3),gclist.getString(4)));
+             }
+        }
+        ResultSet reclist=statement.executeQuery(sql);
+        while(reclist.next())
+        {
+            recommended.add(new Recommended(reclist.getString(1), reclist.getString(2), reclist.getString(3),reclist.getString(4)));
+        }
+        
+        RecommendedTable.setItems(recommended);
+    }
+    private String getMajor(String user)throws SQLException
+    {
+        String major=" ";
+        String usr=user;
+        String sql = "Select Major From Student WHERE Username = '"+usr+"';";
+        
+        ResultSet maj=statement.executeQuery(sql);
+        while(maj.next())
+        {
+            major=maj.getString(1);
+        }
+        
+        return major;
     }
 private void setScheduleTable()
 {
@@ -541,6 +628,16 @@ private void setScheduleTable()
     NumCol.setCellValueFactory(new PropertyValueFactory<>("courseNum"));
     NameCol.setCellValueFactory(new PropertyValueFactory<>("courseName"));
 }
+
+
+private void setRecommendedTable()
+{
+    RecSubCol.setCellValueFactory(new PropertyValueFactory<>("subject"));
+    RecNumCol.setCellValueFactory(new PropertyValueFactory<>("courseNum"));
+    RecCredCol.setCellValueFactory(new PropertyValueFactory<>("credit"));
+    RecNameCol.setCellValueFactory(new PropertyValueFactory<>("courseName"));
+}
+
 
 
 private void setTranscriptTable()
