@@ -32,6 +32,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -42,9 +43,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -64,14 +69,23 @@ import javax.swing.JOptionPane;
  */
 public class LoggedInController implements Initializable {
 ObservableList<String> credits=FXCollections.observableArrayList("1","2","3");
-ObservableList<String> grades=FXCollections.observableArrayList("A","B","C","D","F");
+ObservableList<String> grades=FXCollections.observableArrayList("A","B","C","D","F","IP");
 ObservableList<String> status=FXCollections.observableArrayList("Completed","Incomplete","In Progress");
 ObservableList<String> sub=FXCollections.observableArrayList("ANTH", "ARTS","ASTR","BIOL","CHEM","COMM","CSCI","DANC","ECON","ENGL","ENST","ENVR"
 ,"FILM","FREN","GEOL","HIST","HONR","INDS","MASC","MATH","MGMT","MUSI","PHIL","PHYS","POLS","PSCI","PSYC","QUMT"
 ,"SOCI","SPAN","THTF","WRLS","CRIJ");  
 ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", "Spring 2018", "May 2018", "Summer I 2018", "Summer II 2018", "Fall 2018", "Spring 2019");
 
-
+    @FXML
+    private ChoiceBox<String> SchedSemester;
+    @FXML
+    private TableColumn<Schedule,String> SubCol;
+    @FXML
+    private TableColumn<Schedule,String> NumCol;
+    @FXML
+    private TableColumn<Schedule,String> NameCol;
+    @FXML
+    private TableView<Schedule> ScheduleTable;
     @FXML
     private Button CompleteSub;
     @FXML
@@ -135,6 +149,8 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
 
     @FXML
     private TextField userName;
+    
+    private ObservableList<Schedule> classes;
     ConnectionClass connectionClass=new ConnectionClass();
     Connection connection=connectionClass.getConnection();
     Statement statement=connection.createStatement();
@@ -166,8 +182,8 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
         names.setText("Welcome, "+user);//outputs the message welcome,user; user being the values that are given in the text field 
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyy HH:mm:ss");
         Date date = new Date();
-
-
+        setScheduleTable();
+        classes=FXCollections.observableArrayList();
         Date_txt.setText("Today's date is: " + dateFormat.format(date));
         //set the items into certain choiceboxes
         CompletedGrade.setItems(grades);
@@ -182,6 +198,7 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
         CompletedStatus.setDisable(true);
         CompletedSemester.setDisable(true);
         CompleteSub.setDisable(true);
+        SchedSemester.setItems(Semesters);
         
         String sub;
         //checks for anychanges in the values of the choiceboxes to allow the next to be available to be clicked
@@ -202,7 +219,18 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
         CompletedGrade.setItems(FXCollections.observableArrayList("A","B","C","D","F"));
         CompletedStatus.setItems(FXCollections.observableArrayList("Completed","Incomplete", "In Progress"));
 
-
+        SchedSemester.getSelectionModel().selectedItemProperty().addListener((v, oldvalue, newvalue)->{
+            try{
+                ScheduleSemesterSelected(newvalue, user);
+            }
+            catch(Exception ex)
+                {
+                    Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Schedule Display error!");
+            alert.showAndWait();
+                }
+        });
     }        
      @FXML
     void GoToMajorInfo(ActionEvent event) throws URISyntaxException, IOException {
@@ -456,7 +484,28 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
         CompletedCredit.setEditable(false);
         
     }
-
+    
+    @FXML
+    void ScheduleSemesterSelected(String n, String user)throws SQLException
+    {
+        String semester=n;
+        String username=user;
+        String sql="Select course, courseNum, courseName From "+ username+" WHERE Semester = '"+semester+"';";
+        
+        
+        ResultSet sem=statement.executeQuery(sql);
+        while(sem.next())
+        {
+           classes.add(new Schedule(sem.getString(1), sem.getString(2),sem.getString(3)));
+        }
+        ScheduleTable.setItems(classes);
+    }
+private void setScheduleTable()
+{
+    SubCol.setCellValueFactory(new PropertyValueFactory<>("subject"));
+    NumCol.setCellValueFactory(new PropertyValueFactory<>("courseNum"));
+    NameCol.setCellValueFactory(new PropertyValueFactory<>("courseName"));
+}
 //    @FXML
 //    void transcript_submit(ActionEvent event) {
 //        System.out.println("Under Construction");
