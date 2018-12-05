@@ -83,7 +83,17 @@
           </Tab>
           <Tab text="Schedule">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ChoiceBox fx:id="SchedSemester" layoutX="175.0" layoutY="126.0" prefWidth="150.0" />
+                        <TableView fx:id="ScheduleTable" layoutX="169.0" layoutY="191.0" prefHeight="417.0" prefWidth="620.0">
+                          <columns>
+                            <TableColumn fx:id="SubCol" prefWidth="95.0" text="Subject" />
+                            <TableColumn fx:id="NumCol" prefWidth="106.0" text="Course Number" />
+                              <TableColumn fx:id="NameCol" prefWidth="418.0" text="Course Name" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
             </content>
           </Tab>
             <Tab text="Completed">
