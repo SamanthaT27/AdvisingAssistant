@@ -151,18 +151,40 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
     private TextField userName;
     
     private ObservableList<Schedule> classes;
+    
+    private ObservableList<Transcript> Tclasses;
     ConnectionClass connectionClass=new ConnectionClass();
     Connection connection=connectionClass.getConnection();
     Statement statement=connection.createStatement();
 
-//     @FXML
-//    private TextField transcript_user;
-//    @FXML
-//    private TextField transcript_view;
-//    @FXML
-//    private Button transcript_submit;
+    
+    @FXML
+    private TableView<Transcript> transcript_table;
+    
+    @FXML
+    private TableColumn<Transcript, String> Transcript_CourseName;
 
+    @FXML
+    private TableColumn<Transcript, String> Transcript_Credit;
+    
+    @FXML
+    private TableColumn<Transcript, String> Transcript_Grade;
+    
+    @FXML
+    private TableColumn<Transcript, String> Transcript_Subject;
+    
+    @FXML
+    private TableColumn<Transcript, String> Transcript_CourseNum;
 
+    @FXML
+    private TableColumn<Transcript, String> Transcript_Semester;
+    
+    @FXML
+    private TableColumn<Transcript, String> Transcript_Status;
+    
+
+        
+        
     public LoggedInController() throws SQLException {
         this.statement = connection.createStatement();
     }
@@ -184,6 +206,7 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
         Date date = new Date();
         setScheduleTable();
         classes=FXCollections.observableArrayList();
+        Tclasses=FXCollections.observableArrayList();
         Date_txt.setText("Today's date is: " + dateFormat.format(date));
         //set the items into certain choiceboxes
         CompletedGrade.setItems(grades);
@@ -200,6 +223,18 @@ ObservableList<String> Semesters=FXCollections.observableArrayList("Fall 2017", 
         CompleteSub.setDisable(true);
         SchedSemester.setItems(Semesters);
         
+        
+        setTranscriptTable();
+        try{
+            TranscriptDisplay(user);
+        }
+        catch(SQLException e)
+        {
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Transcript Display Error!");
+            alert.showAndWait();
+        }
         String sub;
         //checks for anychanges in the values of the choiceboxes to allow the next to be available to be clicked
         
@@ -506,14 +541,34 @@ private void setScheduleTable()
     NumCol.setCellValueFactory(new PropertyValueFactory<>("courseNum"));
     NameCol.setCellValueFactory(new PropertyValueFactory<>("courseName"));
 }
-//    @FXML
-//    void transcript_submit(ActionEvent event) {
-//        System.out.println("Under Construction");
-//
-//    }
-    @FXML
-    void transcript_submit(ActionEvent event) {
 
+
+private void setTranscriptTable()
+{
+    Transcript_Subject.setCellValueFactory(new PropertyValueFactory<>("subject"));
+    Transcript_CourseNum.setCellValueFactory(new PropertyValueFactory<>("courseNum"));
+    Transcript_CourseName.setCellValueFactory(new PropertyValueFactory<>("courseName"));
+    Transcript_Credit.setCellValueFactory(new PropertyValueFactory<>("credit"));
+    Transcript_Grade.setCellValueFactory(new PropertyValueFactory<>("grade"));
+    Transcript_Status.setCellValueFactory(new PropertyValueFactory<>("status"));
+    Transcript_Semester.setCellValueFactory(new PropertyValueFactory<>("semester"));
+    
+  
+}
+
+ @FXML
+    void TranscriptDisplay(String user)throws SQLException
+    {
+        String username=user;
+        String sql="Select course, courseNum, courseName, credit, grade, stat, Semester From "+ username;
+        
+        
+        ResultSet sem=statement.executeQuery(sql);
+        while(sem.next())
+        {
+           Tclasses.add(new Transcript(sem.getString(1), sem.getString(2),sem.getString(3),sem.getString(4),sem.getString(5),sem.getString(6),sem.getString(7)));
+        }
+        transcript_table.setItems(Tclasses);
     }
     
 

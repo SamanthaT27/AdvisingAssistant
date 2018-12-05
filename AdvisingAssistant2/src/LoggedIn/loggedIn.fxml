@@ -133,15 +133,17 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Text layoutX="162.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please confirm your username. ">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="202.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" />
-                        <TextField fx:id="transcript_user" layoutX="276.0" layoutY="165.0" />
-                        <TextArea fx:id="transcript_view" layoutX="162.0" layoutY="295.0" prefHeight="453.0" prefWidth="804.0" />
-                        <Button fx:id="transcript_submit" layoutX="482.0" layoutY="165.0" mnemonicParsing="false" onAction="#transcript_submit" text="Submit" />
+                        <TableView fx:id="transcript_table" layoutX="158.0" layoutY="121.0" prefHeight="626.0" prefWidth="809.0">
+                          <columns>
+                            <TableColumn fx:id="Transcript_Subject" prefWidth="89.0" text="Subject" />
+                            <TableColumn fx:id="Transcript_CourseNum" prefWidth="106.0" text="Course Number" />
+                              <TableColumn fx:id="Transcript_CourseName" prefWidth="205.0" text="Course Name" />
+                              <TableColumn fx:id="Transcript_Credit" prefWidth="75.0" text="Credit" />
+                              <TableColumn fx:id="Transcript_Grade" prefWidth="66.0" text="Grade" />
+                              <TableColumn fx:id="Transcript_Status" prefWidth="110.0" text="Status" />
+                              <TableColumn fx:id="Transcript_Semester" prefWidth="146.0" text="Semester" />
+                          </columns>
+                        </TableView>
                      </children></AnchorPane>
             </content>
           </Tab>
